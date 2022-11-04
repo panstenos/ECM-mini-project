@@ -1,31 +1,31 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex
- -Odist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex
- -logfile=dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hxl
+ dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex
+ -Odist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex
+ -logfile=dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hxl
  -addressing=1
  -break=300000
 
 ### Memory Usage ###
  Intel Hex-file ranges:
-  0h - 3h		(dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex)
-  8h - 425h		(dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex)
-  200000h - 20000Fh		(dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex)
-  300000h - 30000Bh		(dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex)
+  0h - 5h		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
+  8h - 507h		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
+  200000h - 20000Fh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
+  300000h - 30000Bh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
  Unused ranges:
-  4h - 7h
-  426h - 1FFFFFh
+  6h - 7h
+  508h - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Intel Hex-file         (dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.hex)
+  H1 = Intel Hex-file         (dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
-00000000 | H1 H1 H1 H1 -- -- -- -- H1 H1 H1 H1 H1 H1 H1 H1
+00000000 | H1 H1 H1 H1 H1 H1 -- -- H1 H1 H1 H1 H1 H1 H1 H1
 00000010 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000020 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000030 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
@@ -91,7 +91,21 @@
 000003F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000400 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00000410 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00000420 | H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- --
+00000420 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000430 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000440 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000450 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000460 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000470 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000480 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000490 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004D0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+000004F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00000500 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

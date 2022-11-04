@@ -24303,10 +24303,11 @@ unsigned long increment_time(unsigned long increment){
     }else{
         time_counter += increment*3600;
     }
-    if(time_counter >= 86400){
+    if(time_counter >= 86401){
         time_counter = 0;
     }
-
+    unsigned int hour = get_hour();
+    hour += 1;
     return time_counter;
 }
 

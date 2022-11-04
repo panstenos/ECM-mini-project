@@ -12,23 +12,28 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-cinit CODE 0 236 236 A 1 2
+cinit CODE 0 404 404 12 1 2
 idloc IDLOC 5 200000 200000 10 1 1
-text0 CODE 0 188 188 2C 1 2
-text1 CODE 0 1F8 1F8 1A 1 2
-text2 CODE 0 1D8 1D8 20 1 2
-text3 CODE 0 150 150 38 1 2
-text4 CODE 0 88 88 C8 1 2
-text5 CODE 0 226 226 10 1 2
-text6 CODE 0 1B4 1B4 24 1 2
-text7 CODE 0 212 212 14 1 2
-cstackCOMRAM COMRAM 1 1 1 9 1 1
-temp COMRAM 1 A A 1 1 1
-intcode CODE 0 8 8 7C 1 2
+text0 CODE 0 2FA 2FA 44 1 2
+text1 CODE 0 376 376 2E 1 2
+text2 CODE 0 162 162 A4 1 2
+text3 CODE 0 3A4 3A4 28 1 2
+text4 CODE 0 33E 33E 38 1 2
+text5 CODE 0 9A 9A C8 1 2
+text6 CODE 0 416 416 10 1 2
+text7 CODE 0 3CC 3CC 24 1 2
+text8 CODE 0 3F0 3F0 14 1 2
+nvCOMRAM COMRAM 1 27 27 2 1 1
+text10 CODE 0 206 206 8A 1 2
+text11 CODE 0 290 290 6A 1 2
+cstackCOMRAM COMRAM 1 1 1 22 1 1
+temp COMRAM 1 29 29 1 1 1
+intcode CODE 0 8 8 8E 1 2
+bssCOMRAM COMRAM 1 23 23 4 1 1
 config CONFIG 4 300000 300000 C 1 1
-$C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
+$C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 idloc IDLOC 5 200000 200000 10 1 1
-init CODE 0 84 84 4 1 2
+init CODE 0 96 96 4 1 2
 reset_vec CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 C 1 1
 # %UNUSED Section
@@ -50,17 +55,17 @@ BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
 CONST 4-7 1
-CONST 240-1FFFF 1
+CONST 426-1FFFF 1
 SMALLCONST E00-1FFFF 1
 CODE 4-7 1
-CODE 240-1FFFF 1
+CODE 426-1FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
 BANK13 D00-DE9 1
-BIGRAM B-DE9 1
+BIGRAM 2A-DE9 1
 BIGSFR DEF-FFF 1
-COMRAM B-5F 1
+COMRAM 2A-5F 1
 EEDATA 310000-3103FF 1
 MEDIUMCONST E00-FFFF 1
 MEDIUMCONST 10E00-1FFFF 1
@@ -78,112 +83,154 @@ MEDIUMCONST 10E00-1FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-8 intcode CODE >7993:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-8 intcode CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-A intcode CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-1A intcode CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-3E intcode CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-42 intcode CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-50 intcode CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-74 intcode CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-78 intcode CODE >34:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-7C intcode CODE >35:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-80 intcode CODE >38:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-212 text7 CODE >7:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-212 text7 CODE >9:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-218 text7 CODE >10:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-21A text7 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-222 text7 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-224 text7 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1B4 text6 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1B4 text6 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1B6 text6 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1C0 text6 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1C8 text6 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1CA text6 CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1CC text6 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1CE text6 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1D2 text6 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-1D6 text6 CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
-226 text5 CODE >8:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-226 text5 CODE >12:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-22A text5 CODE >13:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-22C text5 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-22E text5 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-230 text5 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-232 text5 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-234 text5 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
-88 text4 CODE >49:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-88 text4 CODE >54:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-9E text4 CODE >55:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-B4 text4 CODE >56:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-CA text4 CODE >57:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-E0 text4 CODE >58:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-F6 text4 CODE >59:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-10C text4 CODE >60:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-122 text4 CODE >61:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-138 text4 CODE >62:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-14E text4 CODE >65:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-150 text3 CODE >8:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-150 text3 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-152 text3 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-154 text3 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-156 text3 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-158 text3 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-15A text3 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-15C text3 CODE >20:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-15E text3 CODE >21:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-160 text3 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-162 text3 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-164 text3 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-166 text3 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-168 text3 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-16A text3 CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-16C text3 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-16E text3 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-170 text3 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-172 text3 CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-174 text3 CODE >34:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-176 text3 CODE >35:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-178 text3 CODE >36:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-17A text3 CODE >37:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-17C text3 CODE >38:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-17E text3 CODE >39:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-180 text3 CODE >40:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-182 text3 CODE >41:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-184 text3 CODE >42:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-186 text3 CODE >43:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
-1D8 text2 CODE >7:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1D8 text2 CODE >9:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1E0 text2 CODE >10:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1E2 text2 CODE >11:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1EA text2 CODE >12:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1EC text2 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1F0 text2 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1F4 text2 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1F6 text2 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1F8 text1 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1F8 text1 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-1FE text1 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-204 text1 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-210 text1 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
-188 text0 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-188 text0 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-18A text0 CODE >20:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-18C text0 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-18E text0 CODE >23:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-192 text0 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-196 text0 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-19A text0 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-19E text0 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
-236 cinit CODE >6773:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-236 cinit CODE >6775:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-236 cinit CODE >6778:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-236 cinit CODE >6784:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-236 cinit CODE >6786:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-238 cinit CODE >6787:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-23A cinit CODE >6788:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
-23C cinit CODE >6789:C:\Users\arthu\AppData\Local\Temp\xcAsbqg.s
+8 intcode CODE >8261:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+8 intcode CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+A intcode CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+1A intcode CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+3C intcode CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+40 intcode CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+4E intcode CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+72 intcode CODE >34:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+86 intcode CODE >36:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+8A intcode CODE >37:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+8E intcode CODE >39:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+92 intcode CODE >42:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+290 text11 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+290 text11 CODE >119:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2A0 text11 CODE >121:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2AE text11 CODE >122:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2BE text11 CODE >123:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2C8 text11 CODE >124:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2D2 text11 CODE >125:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2E8 text11 CODE >128:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+2F8 text11 CODE >129:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
+206 text10 CODE >52:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+206 text10 CODE >54:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+218 text10 CODE >55:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+228 text10 CODE >56:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+22C text10 CODE >57:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+260 text10 CODE >59:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+27E text10 CODE >60:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+28E text10 CODE >64:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3F0 text8 CODE >7:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3F0 text8 CODE >9:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3F6 text8 CODE >10:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3F8 text8 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+400 text8 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+402 text8 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3CC text7 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3CC text7 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3CE text7 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3D8 text7 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3E0 text7 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3E2 text7 CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3E4 text7 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3E6 text7 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3EA text7 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+3EE text7 CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\comparator.c
+416 text6 CODE >9:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+416 text6 CODE >13:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+41A text6 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+41C text6 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+41E text6 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+420 text6 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+422 text6 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+424 text6 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
+9A text5 CODE >49:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+9A text5 CODE >54:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+B0 text5 CODE >55:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+C6 text5 CODE >56:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+DC text5 CODE >57:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+F2 text5 CODE >58:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+108 text5 CODE >59:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+11E text5 CODE >60:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+134 text5 CODE >61:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+14A text5 CODE >62:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+160 text5 CODE >65:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+33E text4 CODE >8:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+33E text4 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+340 text4 CODE >15:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+342 text4 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+344 text4 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+346 text4 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+348 text4 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+34A text4 CODE >20:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+34C text4 CODE >21:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+34E text4 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+350 text4 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+352 text4 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+354 text4 CODE >26:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+356 text4 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+358 text4 CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+35A text4 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+35C text4 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+35E text4 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+360 text4 CODE >32:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+362 text4 CODE >34:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+364 text4 CODE >35:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+366 text4 CODE >36:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+368 text4 CODE >37:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+36A text4 CODE >38:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+36C text4 CODE >39:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+36E text4 CODE >40:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+370 text4 CODE >41:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+372 text4 CODE >42:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+374 text4 CODE >43:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
+3A4 text3 CODE >11:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3A4 text3 CODE >13:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3AC text3 CODE >14:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3AE text3 CODE >16:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3B6 text3 CODE >18:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3B8 text3 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3C0 text3 CODE >21:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3C4 text3 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3C8 text3 CODE >23:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3CA text3 CODE >24:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+162 text2 CODE >7:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+162 text2 CODE >13:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+172 text2 CODE >14:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+188 text2 CODE >15:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+18C text2 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+190 text2 CODE >17:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+19A text2 CODE >18:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+19C text2 CODE >16:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1AA text2 CODE >21:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1B4 text2 CODE >22:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1D2 text2 CODE >23:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1E2 text2 CODE >24:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1E4 text2 CODE >26:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1EE text2 CODE >27:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1F4 text2 CODE >28:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+1F4 text2 CODE >29:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+204 text2 CODE >30:C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+376 text1 CODE >66:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+376 text1 CODE >67:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+3A2 text1 CODE >68:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+2FA text0 CODE >17:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+2FA text0 CODE >19:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+2FC text0 CODE >20:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+2FE text0 CODE >22:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+300 text0 CODE >23:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+302 text0 CODE >25:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+304 text0 CODE >27:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+306 text0 CODE >28:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+30A text0 CODE >29:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+30E text0 CODE >30:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+31A text0 CODE >31:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+31E text0 CODE >35:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+32A text0 CODE >36:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\main.c
+404 cinit CODE >6788:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+404 cinit CODE >6790:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+404 cinit CODE >6793:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+404 cinit CODE >6805:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+406 cinit CODE >6806:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+408 cinit CODE >6807:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+40A cinit CODE >6808:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+40C cinit CODE >6814:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+40C cinit CODE >6816:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+40E cinit CODE >6817:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+410 cinit CODE >6818:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
+412 cinit CODE >6819:C:\Users\arthu\AppData\Local\Temp\xcAselo.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -198,60 +245,67 @@ F6 text4 CODE >59:C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedd
 %SYMTAB
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hspace_0 E00 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Hspace_1 B 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Hspace_1 2A 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hspace_4 60000C 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-?_get16bitTMR0val 2 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_get16bitTMR0val 212 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-_main 188 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-btemp A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-start 84 0 CODE 0 init C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-get16bitTMR0val@low_bits 4 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Hpowerup 84 0 CODE 0 powerup dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_DAC_init 212 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-ttemp5 B 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-ttemp6 E 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-ttemp7 12 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_LEDarray_init 150 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-intlevel0 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-intlevel1 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-intlevel2 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-intlevel3 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-__end_of_DAC_init 226 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+_main 2FA 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+btemp 29 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+start 96 0 CODE 0 init C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+__HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+?___lmul 1 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Hpowerup 96 0 CODE 0 powerup dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_DAC_init 3F0 0 CODE 0 text8 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+ttemp5 2A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+ttemp6 2D 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+ttemp7 31 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__LnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_LEDarray_init 33E 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__accesstop 60 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+intlevel0 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+intlevel1 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+intlevel2 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+intlevel3 0 0 CODE 0 text C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+__LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_DAC_init 404 0 CODE 0 text8 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-wtemp8 B 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+wtemp8 2A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_get16bitTMR0val 1F8 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_LEDarray_disp_bin 88 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_Interrupts_init 236 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
+_LEDarray_disp_bin 9A 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_Interrupts_init 426 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of___lmul 2FA 0 CODE 0 text11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _CM1CON0bits ED0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _CM1CON1bits ED1 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Hintcodelo 84 0 CODE 0 intcodelo dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Lintcodelo 84 0 CODE 0 intcodelo dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_Interrupts_init 226 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-start_initialization 236 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Hintcodelo 96 0 CODE 0 intcodelo dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of___lldiv 206 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__HnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lldiv@counter 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Lintcodelo 96 0 CODE 0 intcodelo dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_Interrupts_init 416 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+start_initialization 404 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TRISAbits F81 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TRISBbits F82 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_TRISDbits F84 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TRISFbits F86 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TRISGbits F87 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TRISHbits F88 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lldiv@dividend 12 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _IPR2bits E21 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-isa$xinst 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-__end_of_LEDarray_init 188 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_test_mode 27 0 COMRAM 1 nvCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+isa$xinst 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+__end_of_LEDarray_init 376 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbank2 0 0 ABS 0 bank2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -280,6 +334,7 @@ __Htext4 0 0 ABS 0 text4 dist/default/production\mini-project-energy-saving-auto
 __Htext5 0 0 ABS 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Htext6 0 0 ABS 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Htext7 0 0 ABS 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Htext8 0 0 ABS 0 text8 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _CM1PCHbits ED3 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbank10 0 0 ABS 0 bank10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbank11 0 0 ABS 0 bank11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -288,8 +343,8 @@ __Hbank13 0 0 ABS 0 bank13 dist/default/production\mini-project-energy-saving-au
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-__end_of_HighISR 84 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+__end_of_HighISR 96 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hconfig 30000C 0 CONFIG 4 config dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -318,6 +373,7 @@ __Ltext4 0 0 ABS 0 text4 dist/default/production\mini-project-energy-saving-auto
 __Ltext5 0 0 ABS 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Ltext6 0 0 ABS 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Ltext7 0 0 ABS 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Ltext8 0 0 ABS 0 text8 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _PORTAbits F89 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -328,38 +384,48 @@ _INTCONbits FF2 0 ABS 0 - dist/default/production\mini-project-energy-saving-aut
 __Habs1 0 0 ABS 0 abs1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hdata 0 0 ABS 0 data dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hheap 0 0 HEAP 7 heap dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Hinit 88 0 CODE 0 init dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Hinit 9A 0 CODE 0 init dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Htemp B 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Htemp 2A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Htext 0 0 ABS 0 text dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Labs1 0 0 ABS 0 abs1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Ldata 0 0 ABS 0 data dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lheap 0 0 HEAP 7 heap dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Linit 84 0 CODE 0 init dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Linit 96 0 CODE 0 init dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Ltemp A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Ltemp 29 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Ltext 0 0 ABS 0 text dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-int$flags A 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lmul 290 0 CODE 0 text11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+int$flags 29 0 COMRAM 1 temp dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_increment_time 206 0 CODE 0 text10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_Timer0_init 1D8 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_Timer0_init 3A4 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__S0 240 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__S1 B 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__S0 426 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__S1 2A 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __S4 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __S5 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-LEDarray_disp_bin@number 8 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+LEDarray_disp_bin@number 12 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__pnvCOMRAM 27 0 COMRAM 1 nvCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lldiv@divisor 16 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hramtop E00 0 RAM 0 ramtop dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __activetblptr 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Htext10 0 0 ABS 0 text10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Htext11 0 0 ABS 0 text11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_increment_time 290 0 CODE 0 text10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _PIE0bits E29 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _PIE2bits E2B 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext10 206 0 CODE 0 text10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext11 290 0 CODE 0 text11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lldiv 162 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbank10 0 0 ABS 0 bank10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbank11 0 0 ABS 0 bank11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbank12 0 0 ABS 0 bank12 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -367,65 +433,78 @@ __Lbank13 0 0 ABS 0 bank13 dist/default/production\mini-project-energy-saving-au
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lmul@multiplier 1 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _LATAbits F79 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _LATBbits F7A 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_LATDbits F7C 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _LATFbits F7E 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _LATGbits F7F 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _LATHbits F80 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+main@time 21 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-isa$std 1 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-stackhi 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-stacklo 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
+isa$std 1 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+stackhi 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+stacklo 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_get_hour 376 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+increment_time@increment D 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__pbssCOMRAM 23 0 COMRAM 1 bssCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_get_hour 3A4 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _PIR0bits E33 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _PIR2bits E35 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-_Comp1_init 1B4 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_Comp1_init 3CC 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-end_of_initialization 236 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+end_of_initialization 40C 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+?___lldiv 12 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lramtop E00 0 RAM 0 ramtop dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__pcinit 236 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext0 188 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext1 1F8 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext2 1D8 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext3 150 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext4 88 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext5 226 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext6 1B4 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ptext7 212 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__pcinit 404 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext0 2FA 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext1 376 0 CODE 0 text1 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext2 162 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext3 3A4 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext4 33E 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext5 9A 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext6 416 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext7 3CC 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ptext8 3F0 0 CODE 0 text8 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__ramtop E00 0 RAM 0 ramtop C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
+__Ltext10 0 0 ABS 0 text10 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Ltext11 0 0 ABS 0 text11 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__ramtop E00 0 RAM 0 ramtop C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 _HighISR 8 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Lpowerup 84 0 CODE 0 powerup dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Lpowerup 96 0 CODE 0 powerup dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _CM1NCHbits ED2 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-get16bitTMR0val@high_bits 6 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-___heap_hi 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
-___heap_lo 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAsbqg.o
+___heap_hi 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
+___heap_lo 0 0 ABS 0 - C:\Users\arthu\AppData\Local\Temp\xcAselo.o
 ___param_bank 0 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of__initialization 236 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of__initialization 40C 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_Comp1_init 1D8 0 CODE 0 text6 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_Comp1_init 3F0 0 CODE 0 text7 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_Timer0_init 1F8 0 CODE 0 text2 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lmul@product 9 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lmul@multiplicand 5 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_Timer0_init 3CC 0 CODE 0 text3 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+___lldiv@quotient 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _T0CON0bits FD5 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _T0CON1bits FD6 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_main 1B4 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_main 33E 0 CODE 0 text0 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __pintcode 8 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TMR0H FD4 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 _TMR0L FD3 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
@@ -437,13 +516,16 @@ __LRAM 1 0 ABS 0 - dist/default/production\mini-project-energy-saving-automatic-
 __Lbss 0 0 RAM 1 bss dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__initialization 236 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+_time_counter 23 0 COMRAM 1 bssCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+?_get_hour 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__initialization 404 0 CODE 0 cinit dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+Timer0_init@init_test_mode 12 0 COMRAM 1 cstackCOMRAM dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__Hintcode 84 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
-__end_of_LEDarray_disp_bin 150 0 CODE 0 text4 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__Hintcode 96 0 CODE 0 intcode dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
+__end_of_LEDarray_disp_bin 162 0 CODE 0 text5 dist/default/production\mini-project-energy-saving-automatic-outside-light-panagiotis.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -468,9 +550,9 @@ __end_of_LEDarray_disp_bin 150 0 CODE 0 text4 dist/default/production\mini-proje
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-cstackCOMRAM 1 1 1 A 1
+cstackCOMRAM 1 1 1 29 1
 reset_vec 0 0 0 4 1
-intcode 0 8 8 238 1
+intcode 0 8 8 41E 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

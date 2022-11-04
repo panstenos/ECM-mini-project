@@ -12,21 +12,28 @@
 #include "timers.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
-
+#define _TEST_MODE 1
 
 void main(void) {
 	//call your initialisation functions to set up the hardware modules
     LATHbits.LATH3=0;   //set initial output statem different than the other diode for first task
     TRISHbits.TRISH3=0; //set TRIS value for pin (output)
     
+    TRISDbits.TRISD7=0;
+    LATDbits.LATD7=1;
+    
+    TRISAbits.TRISA3=1;
+    
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init();
+    Timer0_init(_TEST_MODE);
     LEDarray_init();
 
 
     while (1) {
-        LEDarray_disp_bin(get16bitTMR0val()>>8);
+        unsigned int time = get_hour();
+        LEDarray_disp_bin(time);
+        
     }
 }

@@ -1,4 +1,4 @@
-# 1 "timers.c"
+# 1 "LEDarray.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "timers.c" 2
+# 1 "LEDarray.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24229,87 +24229,124 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 1 "timers.c" 2
+# 1 "LEDarray.c" 2
 
-# 1 "./timers.h" 1
-
-
-
-
-
-
-
-void Timer0_init(unsigned short);
-unsigned int get16bitTMR0val(void);
-unsigned long get_time(void);
-unsigned long set_time(unsigned long);
-unsigned long increment_time(unsigned long);
-unsigned int get_hour(void);
-# 2 "timers.c" 2
+# 1 "./LEDarray.h" 1
 
 
 
 
 
 
-unsigned long time_counter = 0;
-unsigned short test_mode = 0;
 
-void Timer0_init(unsigned short init_test_mode)
+
+void LEDarray_init(void);
+void LEDarray_disp_bin(unsigned int number);
+void LEDarray_disp_dec(unsigned int number);
+void LEDarray_disp_PPM(unsigned int number, unsigned int max);
+# 2 "LEDarray.c" 2
+
+
+
+
+
+
+void LEDarray_init(void)
 {
-    T0CON1bits.T0CS=0b010;
-    T0CON1bits.T0ASYNC=1;
 
-    T0CON1bits.T0CKPS=8;
 
-    T0CON0bits.T016BIT=1;
- test_mode = init_test_mode;
 
-    TMR0H = 0b1011;
-    TMR0L = 0b11011100;
-    T0CON0bits.T0EN=1;
+
+    TRISGbits.TRISG0 = 0;
+    TRISGbits.TRISG1 = 0;
+    TRISAbits.TRISA2 = 0;
+    TRISFbits.TRISF6 = 0;
+    TRISAbits.TRISA4 = 0;
+    TRISAbits.TRISA5 = 0;
+    TRISFbits.TRISF0 = 0;
+    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB1 = 0;
+
+    PORTGbits.RG0 = 1;
+    PORTGbits.RG1 = 1;
+    PORTAbits.RA2 = 1;
+    PORTFbits.RF6 = 1;
+    PORTAbits.RA4 = 1;
+    PORTAbits.RA5 = 1;
+    PORTFbits.RF0 = 1;
+    PORTBbits.RB0 = 1;
+    PORTBbits.RB1 = 1;
+
+    LATGbits.LATG0 = 0;
+    LATGbits.LATG1 = 0;
+    LATAbits.LATA2 = 0;
+    LATFbits.LATF6 = 0;
+    LATAbits.LATA4 = 0;
+    LATAbits.LATA5 = 0;
+    LATFbits.LATF0 = 0;
+    LATBbits.LATB0 = 0;
+    LATBbits.LATB1 = 0;
 }
 
 
 
 
 
-unsigned int get16bitTMR0val(void)
+void LEDarray_disp_bin(unsigned int number)
 {
-    unsigned int low_bits = TMR0L;
-    unsigned int high_bits = TMR0H<<8;
 
-    return(low_bits|high_bits);
+
+
+    if(number & 0b000000001){LATGbits.LATG0 = 1;}else{LATGbits.LATG0 = 0;}
+    if(number & 0b000000010){LATGbits.LATG1 = 1;}else{LATGbits.LATG1 = 0;}
+    if(number & 0b000000100){LATAbits.LATA2 = 1;}else{LATAbits.LATA2 = 0;}
+    if(number & 0b000001000){LATFbits.LATF6 = 1;}else{LATFbits.LATF6 = 0;}
+    if(number & 0b000010000){LATAbits.LATA4 = 1;}else{LATAbits.LATA4 = 0;}
+    if(number & 0b000100000){LATAbits.LATA5 = 1;}else{LATAbits.LATA5 = 0;}
+    if(number & 0b001000000){LATFbits.LATF0 = 1;}else{LATFbits.LATF0 = 0;}
+    if(number & 0b010000000){LATBbits.LATB0 = 1;}else{LATBbits.LATB0 = 0;}
+    if(number & 0b100000000){LATBbits.LATB1 = 1;}else{LATBbits.LATB1 = 0;}
+
 
 }
 
-unsigned long get_time(){
 
-    return time_counter;
-}
 
-unsigned long set_time(unsigned long time){
-    time_counter = time;
-    if(time_counter >= 86401){
-        time_counter = 0;
+
+
+
+void LEDarray_disp_dec(unsigned int number)
+{
+ unsigned int disp_val;
+
+
+
+
+    disp_val = 0;
+
+    unsigned int num_tens = (number - number %10)/10;
+    for(unsigned int i = 0; i < num_tens; i++){
+        disp_val += 1 << i;
     }
-    return time_counter;
+
+ LEDarray_disp_bin(disp_val);
 }
+# 96 "LEDarray.c"
+void LEDarray_disp_PPM(unsigned int cur_val, unsigned int max)
+{
+ unsigned int disp_val = 0;
 
-unsigned long increment_time(unsigned long increment){
 
-    if(test_mode == 0){
-        time_counter += increment;
-    }else{
-        time_counter += increment*3600;
+
+    unsigned int cur_tens = (cur_val - cur_val %10)/10;
+    for(unsigned int i = 0; i < cur_tens; i++){
+        disp_val += 1 << i;
     }
-    if(time_counter >= 86400){
-        time_counter = 0;
-    }
 
-    return time_counter;
-}
+    unsigned int max_tens = (max - max%10)/10;
 
-unsigned int get_hour(){
-    return time_counter/3600;
+
+    disp_val = disp_val | (1 << max_tens-1);
+
+ LEDarray_disp_bin(disp_val);
 }

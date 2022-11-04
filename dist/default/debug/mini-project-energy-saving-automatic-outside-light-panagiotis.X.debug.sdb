@@ -5,6 +5,7 @@
 [d frameptr 4065 ]
 "7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
+[v i2___lldiv __lldiv `(ul  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\float.c
@@ -51,8 +52,9 @@
 [v _Timer0_init Timer0_init `(v  1 e 1 0 ]
 "52
 [v _increment_time increment_time `(ul  1 e 4 0 ]
-"66
+"67
 [v _get_hour get_hour `(ui  1 e 2 0 ]
+[v i2_get_hour get_hour `(ui  1 e 2 0 ]
 [s S960 . 1 `uc 1 C1IP 1 0 :1:0 
 `uc 1 C2IP 1 0 :1:1 
 `uc 1 C3IP 1 0 :1:2 
@@ -544,30 +546,30 @@
 [v _main main `(v  1 e 1 0 ]
 {
 "35
-[v main@time time `ui  1 a 2 32 ]
+[v main@time time `ui  1 a 2 37 ]
 "39
 } 0
-"66 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
+"67 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
 [v _get_hour get_hour `(ui  1 e 2 0 ]
 {
-"68
+"69
 } 0
 "7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
 [v ___lldiv __lldiv `(ul  1 e 4 0 ]
 {
 "10
-[v ___lldiv@quotient quotient `ul  1 a 4 25 ]
+[v ___lldiv@quotient quotient `ul  1 a 4 30 ]
 "11
-[v ___lldiv@counter counter `uc  1 a 1 29 ]
+[v ___lldiv@counter counter `uc  1 a 1 34 ]
 "7
-[v ___lldiv@dividend dividend `ul  1 p 4 17 ]
-[v ___lldiv@divisor divisor `ul  1 p 4 21 ]
+[v ___lldiv@dividend dividend `ul  1 p 4 22 ]
+[v ___lldiv@divisor divisor `ul  1 p 4 26 ]
 "30
 } 0
 "11 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
 [v _Timer0_init Timer0_init `(v  1 e 1 0 ]
 {
-[v Timer0_init@init_test_mode init_test_mode `us  1 p 2 17 ]
+[v Timer0_init@init_test_mode init_test_mode `us  1 p 2 22 ]
 "24
 } 0
 "8 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\LEDarray.c
@@ -578,7 +580,7 @@
 "49
 [v _LEDarray_disp_bin LEDarray_disp_bin `(v  1 e 1 0 ]
 {
-[v LEDarray_disp_bin@number number `ui  1 p 2 17 ]
+[v LEDarray_disp_bin@number number `ui  1 p 2 22 ]
 "65
 } 0
 "9 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\interrupts.c
@@ -604,8 +606,28 @@
 "52 C:\Users\arthu\OneDrive\Imperial College London\Courses\Embedded C for Microcontrollers\mini-project-energy-saving-automatic-outside-light-panagiotis.X\timers.c
 [v _increment_time increment_time `(ul  1 e 4 0 ]
 {
-[v increment_time@increment increment `ul  1 p 4 12 ]
-"64
+"62
+[v increment_time@hour hour `ui  1 a 2 19 ]
+"52
+[v increment_time@increment increment `ul  1 p 4 15 ]
+"65
+} 0
+"67
+[v i2_get_hour get_hour `(ui  1 e 2 0 ]
+{
+"69
+} 0
+"7 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\__lldiv.c
+[v i2___lldiv __lldiv `(ul  1 e 4 0 ]
+{
+"10
+[v i2___lldiv@quotient quotient `ul  1 a 4 8 ]
+"11
+[v i2___lldiv@counter counter `uc  1 a 1 12 ]
+"7
+[v i2___lldiv@dividend dividend `ul  1 p 4 0 ]
+[v i2___lldiv@divisor divisor `ul  1 p 4 4 ]
+"30
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.40\pic\sources\c99\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]

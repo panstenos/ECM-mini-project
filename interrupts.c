@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "interrupts.h"
+#include "timers.h"
 
 /************************************
  * Function to turn on interrupts and set if priority is used
@@ -24,15 +25,18 @@ void Interrupts_init(void)
 void __interrupt(high_priority) HighISR()
 {
 	if(PIR2bits.C1IF){ 					//check the interrupt source
-        LATHbits.LATH3 = !LATHbits.LATH3;
+        LATDbits.LATD7 = !LATDbits.LATD7;
         PIR2bits.C1IF=0; 						//clear the interrupt flag!
 	}
     if(PIR0bits.TMR0IF){ // Timer overflow flag
         LATHbits.LATH3 = !LATHbits.LATH3;
-        PIR0bits.TMR0IF = 0;
+        
+        increment_time(1);
         
         TMR0H = 0b1011;
         TMR0L = 0b11011100; //Changing the High and Low default value to better match 1s
+        
+        PIR0bits.TMR0IF = 0;
     }
     
 }
