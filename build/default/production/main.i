@@ -24291,7 +24291,8 @@ unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 unsigned long set_time(unsigned long);
 unsigned long increment_time(unsigned long);
-unsigned int get_hour(void);
+float get_hour(void);
+unsigned short test_mode;
 # 12 "main.c" 2
 
 
@@ -24316,8 +24317,12 @@ void main(void) {
 
 
     while (1) {
-        unsigned int time = get_hour();
-        LEDarray_disp_bin(time);
-
+        float time = get_hour();
+        LEDarray_disp_bin((unsigned int) time);
+        if(time >= 5 && time <= 19){
+            LATHbits.LATH3 = 0;
+        }else{
+            LATHbits.LATH3 = 1;
+        }
     }
 }

@@ -32,8 +32,12 @@ void main(void) {
 
 
     while (1) {
-        unsigned int time = get_hour();
-        LEDarray_disp_bin(time);
-        
+        float time = get_hour();
+        LEDarray_disp_bin((unsigned int) time);
+        if(time >= 5 && time <= 19){
+            LATHbits.LATH3 = 0;
+        }else{
+            LATHbits.LATH3 = 1;
+        }
     }
 }

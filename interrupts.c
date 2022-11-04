@@ -29,12 +29,16 @@ void __interrupt(high_priority) HighISR()
         PIR2bits.C1IF=0; 						//clear the interrupt flag!
 	}
     if(PIR0bits.TMR0IF){ // Timer overflow flag
-        LATHbits.LATH3 = !LATHbits.LATH3;
         
         increment_time(1);
         
-        TMR0H = 0b1011;
-        TMR0L = 0b11011100; //Changing the High and Low default value to better match 1s
+        if(test_mode == 0){
+            TMR0H = 0b1011;
+            TMR0L = 0b11011100;
+        }else{
+            TMR0H = 0;
+            TMR0L = 0;
+        }
         
         PIR0bits.TMR0IF = 0;
     }

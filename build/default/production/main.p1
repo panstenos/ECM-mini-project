@@ -92,8 +92,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./LEDarray.h: 9: void LEDarray_init(void);
 [v _LEDarray_init `(v ~T0 @X0 0 ef ]
 "13 ./timers.h
-[; ;./timers.h: 13: unsigned int get_hour(void);
-[v _get_hour `(ui ~T0 @X0 0 ef ]
+[; ;./timers.h: 13: float get_hour(void);
+[v _get_hour `(f ~T0 @X0 0 ef ]
 "10 ./LEDarray.h
 [; ;./LEDarray.h: 10: void LEDarray_disp_bin(unsigned int number);
 [v _LEDarray_disp_bin `(v ~T0 @X0 0 ef1`ui ]
@@ -2077,6 +2077,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
+"14 ./timers.h
+[; ;./timers.h: 14: unsigned short test_mode;
+[v _test_mode `us ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "17 main.c
 [; ;main.c: 17: void main(void) {
@@ -2119,19 +2122,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2017 ]
 {
 "35
-[; ;main.c: 35:         unsigned int time = get_hour();
-[v _time `ui ~T0 @X0 1 a ]
+[; ;main.c: 35:         float time = get_hour();
+[v _time `f ~T0 @X0 1 a ]
 [e = _time ( _get_hour ..  ]
 "36
-[; ;main.c: 36:         LEDarray_disp_bin(time);
-[e ( _LEDarray_disp_bin (1 _time ]
+[; ;main.c: 36:         LEDarray_disp_bin((unsigned int) time);
+[e ( _LEDarray_disp_bin (1 -> _time `ui ]
+"37
+[; ;main.c: 37:         if(time >= 5 && time <= 19){
+[e $ ! && >= _time -> -> 5 `i `f <= _time -> -> 19 `i `f 2019  ]
+{
 "38
-[; ;main.c: 38:     }
+[; ;main.c: 38:             LATHbits.LATH3 = 0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"39
+[; ;main.c: 39:         }else{
+}
+[e $U 2020  ]
+[e :U 2019 ]
+{
+"40
+[; ;main.c: 40:             LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"41
+[; ;main.c: 41:         }
+}
+[e :U 2020 ]
+"42
+[; ;main.c: 42:     }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"39
-[; ;main.c: 39: }
+"43
+[; ;main.c: 43: }
 [e :UE 2015 ]
 }

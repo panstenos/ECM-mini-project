@@ -24244,7 +24244,8 @@ unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 unsigned long set_time(unsigned long);
 unsigned long increment_time(unsigned long);
-unsigned int get_hour(void);
+float get_hour(void);
+unsigned short test_mode;
 # 2 "timers.c" 2
 
 
@@ -24257,16 +24258,25 @@ unsigned short test_mode = 0;
 
 void Timer0_init(unsigned short init_test_mode)
 {
+    test_mode = init_test_mode;
+
     T0CON1bits.T0CS=0b010;
     T0CON1bits.T0ASYNC=1;
 
-    T0CON1bits.T0CKPS=8;
-
     T0CON0bits.T016BIT=1;
- test_mode = init_test_mode;
 
-    TMR0H = 0b1011;
-    TMR0L = 0b11011100;
+    if(test_mode == 0){
+
+        T0CON1bits.T0CKPS=8;
+
+        TMR0H = 0b1011;
+        TMR0L = 0b11011100;
+    }else{
+        T0CON1bits.T0CKPS=0;
+
+        TMR0H = 0;
+        TMR0L = 0;
+    }
     T0CON0bits.T0EN=1;
 }
 
@@ -24280,7 +24290,6 @@ unsigned int get16bitTMR0val(void)
     unsigned int high_bits = TMR0H<<8;
 
     return(low_bits|high_bits);
-
 }
 
 unsigned long get_time(){
@@ -24301,15 +24310,14 @@ unsigned long increment_time(unsigned long increment){
     if(test_mode == 0){
         time_counter += increment;
     }else{
-        time_counter += increment*3600;
+        time_counter += increment*15;
     }
     if(time_counter >= 86400){
         time_counter = 0;
     }
-
     return time_counter;
 }
 
-unsigned int get_hour(){
-    return time_counter/3600;
+float get_hour(){
+    return (float) time_counter/3600;
 }

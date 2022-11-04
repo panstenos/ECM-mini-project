@@ -24256,7 +24256,8 @@ unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 unsigned long set_time(unsigned long);
 unsigned long increment_time(unsigned long);
-unsigned int get_hour(void);
+float get_hour(void);
+unsigned short test_mode;
 # 3 "interrupts.c" 2
 
 
@@ -24287,12 +24288,16 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR()
         PIR2bits.C1IF=0;
  }
     if(PIR0bits.TMR0IF){
-        LATHbits.LATH3 = !LATHbits.LATH3;
 
         increment_time(1);
 
-        TMR0H = 0b1011;
-        TMR0L = 0b11011100;
+        if(test_mode == 0){
+            TMR0H = 0b1011;
+            TMR0L = 0b11011100;
+        }else{
+            TMR0H = 0;
+            TMR0L = 0;
+        }
 
         PIR0bits.TMR0IF = 0;
     }

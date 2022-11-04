@@ -10,6 +10,7 @@ unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 unsigned long set_time(unsigned long);
 unsigned long increment_time(unsigned long);
-unsigned int get_hour(void);
+float get_hour(void);
+unsigned short test_mode;
 
 #endif
