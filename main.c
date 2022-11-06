@@ -10,9 +10,14 @@
 #include "interrupts.h"
 #include "comparator.h"
 #include "timers.h"
+#include "ADC.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
+
 #define _TEST_MODE 1
+#define _CURRENT_DAY 06 //Current day on the installation
+#define _CURRENT_MONTH 11 //Current month on the installation
+#define _LEAP_YEAR 2 //In how many year will there be a leap year. If there was or will be a leap year this year, input 0
 
 void main(void) {
 	//call your initialisation functions to set up the hardware modules
@@ -27,17 +32,31 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(_TEST_MODE);
+    Timer0_init(_TEST_MODE,_CURRENT_DAY,_CURRENT_MONTH,_LEAP_YEAR);
     LEDarray_init();
+    ADC_init();
 
+    unsigned int curr_day;
+    unsigned int curr_month;
 
     while (1) {
-        float time = get_hour();
-        LEDarray_disp_bin((unsigned int) time);
-        if(time >= 5 && time <= 19){
+        float curr_hour = get_hour();
+        LEDarray_disp_bin((unsigned int) curr_hour);
+        
+        if(curr_hour >= 1 && curr_hour <= 5){
             LATHbits.LATH3 = 0;
         }else{
             LATHbits.LATH3 = 1;
         }
+        
+        curr_day = get_day();
+        curr_month = get_month();
+        curr_day += 1;
+        curr_day -=1;
+        
+        curr_month += 1;
+        curr_month -=1;
+        increment_day(1);
+        
     }
 }

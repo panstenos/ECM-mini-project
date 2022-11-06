@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "ADC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,15 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
-
-
-#pragma config WDTE = OFF
-
-
+# 1 "ADC.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24237,69 +24229,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 8 "main.c" 2
-
-# 1 "./LEDarray.h" 1
-
-
-
-
-
-
-
-
-void LEDarray_init(void);
-void LEDarray_disp_bin(unsigned int number);
-void LEDarray_disp_dec(unsigned int number);
-void LEDarray_disp_PPM(unsigned int number, unsigned int max);
-# 9 "main.c" 2
-
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 10 "main.c" 2
-
-# 1 "./comparator.h" 1
-
-
-
-
-
-
-
-void DAC_init(void);
-void Comp1_init(void);
-# 11 "main.c" 2
-
-# 1 "./timers.h" 1
-
-
-
-
-
-
-
-void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
-unsigned int get16bitTMR0val(void);
-unsigned long get_time(void);
-void set_time(unsigned long);
-unsigned short test_mode;
-
-float get_hour(void);
-unsigned int get_day(void);
-unsigned int get_month(void);
-
-void increment_time(unsigned long);
-void increment_day(unsigned int);
-void increment_month(unsigned int);
-# 12 "main.c" 2
+# 1 "ADC.c" 2
 
 # 1 "./ADC.h" 1
 
@@ -24311,46 +24241,41 @@ void increment_month(unsigned int);
 
 void ADC_init(void);
 unsigned int ADC_getval(void);
-# 13 "main.c" 2
-# 22 "main.c"
-void main(void) {
+# 2 "ADC.c" 2
 
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
 
-    TRISDbits.TRISD7=0;
-    LATDbits.LATD7=1;
 
+
+
+
+
+void ADC_init(void)
+{
     TRISAbits.TRISA3=1;
+    ANSELAbits.ANSELA3=1;
 
-    LATHbits.LATH3 = 1;
-    Comp1_init();
-    Interrupts_init();
-    Timer0_init(1,28,11,1);
-    LEDarray_init();
-    ADC_init();
 
-    unsigned int curr_day;
-    unsigned int curr_month;
+    ADREFbits.ADNREF = 0;
+    ADREFbits.ADPREF = 0b00;
+    ADPCH=0b11;
+    ADCON0bits.ADFM = 0;
+    ADCON0bits.ADCS = 1;
+    ADCON0bits.ADON = 1;
+}
 
-    while (1) {
-        float curr_hour = get_hour();
-        LEDarray_disp_bin((unsigned int) curr_hour);
+unsigned int ADC_getval(void)
+{
+    unsigned int tmpval;
 
-        if(curr_hour >= 1 && curr_hour <= 5){
-            LATHbits.LATH3 = 0;
-        }else{
-            LATHbits.LATH3 = 1;
-        }
+    ADCON0bits.GO = 1;
 
-        curr_day = get_day();
-        curr_month = get_month();
-        curr_day += 1;
-        curr_day -=1;
+    while (ADCON0bits.GO);
 
-        curr_month += 1;
-        curr_month -=1;
-        increment_day(1);
+    tmpval = ADRESH;
 
-    }
+
+
+    tmpval = 255 - tmpval;
+
+    return tmpval;
 }

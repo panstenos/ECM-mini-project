@@ -86,17 +86,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./interrupts.h: 8: void Interrupts_init(void);
 [v _Interrupts_init `(v ~T0 @X0 0 ef ]
 "8 ./timers.h
-[; ;./timers.h: 8: void Timer0_init(unsigned short);
-[v _Timer0_init `(v ~T0 @X0 0 ef1`us ]
+[; ;./timers.h: 8: void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
+[v _Timer0_init `(v ~T0 @X0 0 ef4`us`ui`ui`ui ]
 "9 ./LEDarray.h
 [; ;./LEDarray.h: 9: void LEDarray_init(void);
 [v _LEDarray_init `(v ~T0 @X0 0 ef ]
-"13 ./timers.h
-[; ;./timers.h: 13: float get_hour(void);
+"8 ./ADC.h
+[; ;./ADC.h: 8: void ADC_init(void);
+[v _ADC_init `(v ~T0 @X0 0 ef ]
+"14 ./timers.h
+[; ;./timers.h: 14: float get_hour(void);
 [v _get_hour `(f ~T0 @X0 0 ef ]
 "10 ./LEDarray.h
 [; ;./LEDarray.h: 10: void LEDarray_disp_bin(unsigned int number);
 [v _LEDarray_disp_bin `(v ~T0 @X0 0 ef1`ui ]
+"15 ./timers.h
+[; ;./timers.h: 15: unsigned int get_day(void);
+[v _get_day `(ui ~T0 @X0 0 ef ]
+"16
+[; ;./timers.h: 16: unsigned int get_month(void);
+[v _get_month `(ui ~T0 @X0 0 ef ]
+"19
+[; ;./timers.h: 19: void increment_day(unsigned int);
+[v _increment_day `(v ~T0 @X0 0 ef1`ui ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2077,84 +2089,108 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"14 ./timers.h
-[; ;./timers.h: 14: unsigned short test_mode;
+"12 ./timers.h
+[; ;./timers.h: 12: unsigned short test_mode;
 [v _test_mode `us ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"17 main.c
-[; ;main.c: 17: void main(void) {
+"22 main.c
+[; ;main.c: 22: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"19
-[; ;main.c: 19:     LATHbits.LATH3=0;
+"24
+[; ;main.c: 24:     LATHbits.LATH3=0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"20
-[; ;main.c: 20:     TRISHbits.TRISH3=0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"22
-[; ;main.c: 22:     TRISDbits.TRISD7=0;
-[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
-"23
-[; ;main.c: 23:     LATDbits.LATD7=1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "25
-[; ;main.c: 25:     TRISAbits.TRISA3=1;
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 25:     TRISHbits.TRISH3=0;
+[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
 "27
-[; ;main.c: 27:     LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 27:     TRISDbits.TRISD7=0;
+[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "28
-[; ;main.c: 28:     Comp1_init();
-[e ( _Comp1_init ..  ]
-"29
-[; ;main.c: 29:     Interrupts_init();
-[e ( _Interrupts_init ..  ]
+[; ;main.c: 28:     LATDbits.LATD7=1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "30
-[; ;main.c: 30:     Timer0_init(1);
-[e ( _Timer0_init (1 -> -> 1 `i `us ]
-"31
-[; ;main.c: 31:     LEDarray_init();
-[e ( _LEDarray_init ..  ]
+[; ;main.c: 30:     TRISAbits.TRISA3=1;
+[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
+"32
+[; ;main.c: 32:     LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"33
+[; ;main.c: 33:     Comp1_init();
+[e ( _Comp1_init ..  ]
 "34
-[; ;main.c: 34:     while (1) {
+[; ;main.c: 34:     Interrupts_init();
+[e ( _Interrupts_init ..  ]
+"35
+[; ;main.c: 35:     Timer0_init(1,6,11,2);
+[e ( _Timer0_init (4 , , , -> -> 1 `i `us -> -> 6 `i `ui -> -> 11 `i `ui -> -> 2 `i `ui ]
+"36
+[; ;main.c: 36:     LEDarray_init();
+[e ( _LEDarray_init ..  ]
+"37
+[; ;main.c: 37:     ADC_init();
+[e ( _ADC_init ..  ]
+"39
+[; ;main.c: 39:     unsigned int curr_day;
+[v _curr_day `ui ~T0 @X0 1 a ]
+"40
+[; ;main.c: 40:     unsigned int curr_month;
+[v _curr_month `ui ~T0 @X0 1 a ]
+"42
+[; ;main.c: 42:     while (1) {
 [e :U 2017 ]
 {
-"35
-[; ;main.c: 35:         float time = get_hour();
-[v _time `f ~T0 @X0 1 a ]
-[e = _time ( _get_hour ..  ]
-"36
-[; ;main.c: 36:         LEDarray_disp_bin((unsigned int) time);
-[e ( _LEDarray_disp_bin (1 -> _time `ui ]
-"37
-[; ;main.c: 37:         if(time >= 5 && time <= 19){
-[e $ ! && >= _time -> -> 5 `i `f <= _time -> -> 19 `i `f 2019  ]
+"43
+[; ;main.c: 43:         float curr_hour = get_hour();
+[v _curr_hour `f ~T0 @X0 1 a ]
+[e = _curr_hour ( _get_hour ..  ]
+"44
+[; ;main.c: 44:         LEDarray_disp_bin((unsigned int) curr_hour);
+[e ( _LEDarray_disp_bin (1 -> _curr_hour `ui ]
+"46
+[; ;main.c: 46:         if(curr_hour >= 1 && curr_hour <= 5){
+[e $ ! && >= _curr_hour -> -> 1 `i `f <= _curr_hour -> -> 5 `i `f 2019  ]
 {
-"38
-[; ;main.c: 38:             LATHbits.LATH3 = 0;
+"47
+[; ;main.c: 47:             LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"39
-[; ;main.c: 39:         }else{
+"48
+[; ;main.c: 48:         }else{
 }
 [e $U 2020  ]
 [e :U 2019 ]
 {
-"40
-[; ;main.c: 40:             LATHbits.LATH3 = 1;
+"49
+[; ;main.c: 49:             LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"41
-[; ;main.c: 41:         }
+"50
+[; ;main.c: 50:         }
 }
 [e :U 2020 ]
-"42
-[; ;main.c: 42:     }
+"52
+[; ;main.c: 52:         curr_day = get_day();
+[e = _curr_day ( _get_day ..  ]
+"53
+[; ;main.c: 53:         curr_month = get_month();
+[e = _curr_month ( _get_month ..  ]
+"55
+[; ;main.c: 55:         curr_day += 1;
+[e =+ _curr_day -> -> 1 `i `ui ]
+"56
+[; ;main.c: 56:         curr_month +=1;
+[e =+ _curr_month -> -> 1 `i `ui ]
+"58
+[; ;main.c: 58:         increment_day(1);
+[e ( _increment_day (1 -> -> 1 `i `ui ]
+"60
+[; ;main.c: 60:     }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"43
-[; ;main.c: 43: }
+"61
+[; ;main.c: 61: }
 [e :UE 2015 ]
 }

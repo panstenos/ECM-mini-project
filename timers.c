@@ -6,11 +6,18 @@
 ************************************/
 
 unsigned long time_counter = 0;
+unsigned int day = 1;
+unsigned int month = 1;
+unsigned int leap_year_count = 0;
+
 unsigned short test_mode = 0;
 
-void Timer0_init(unsigned short init_test_mode)
+void Timer0_init(unsigned short init_test_mode,unsigned int current_day,unsigned int current_month, unsigned int leap_year)
 {
     test_mode = init_test_mode; //Set the test_mode value
+    day = current_day;
+    month = current_month;
+    leap_year_count = 3 - leap_year;
 
     T0CON1bits.T0CS=0b010; // Fosc/4
     T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
@@ -49,15 +56,26 @@ unsigned long get_time(){
     return time_counter;
 }
 
-unsigned long set_time(unsigned long time){ //Set time in seconds
+float get_hour(){
+    return (float) time_counter/3600;
+}
+
+unsigned int get_day(){
+    return day;
+}
+unsigned int get_month(){
+    return month;
+}
+
+
+void set_time(unsigned long time){ //Set time in seconds
     time_counter = time;
     if(time_counter >= 86401){ //Reset time counter after 1 day
         time_counter = 0;
     }
-    return time_counter;
 }
 
-unsigned long increment_time(unsigned long increment){ //increment time in seconds
+void increment_time(unsigned long increment){ //increment time in seconds
     
     if(test_mode == 0){
         time_counter += increment;
@@ -66,10 +84,42 @@ unsigned long increment_time(unsigned long increment){ //increment time in secon
     }
     if(time_counter >= 86400){ //Reset time counter after 1 day
         time_counter = 0;
+        increment_day(1);
     }
-    return time_counter;
 }
 
-float get_hour(){
-    return (float) time_counter/3600;
+void increment_day(unsigned int increment){ //Increment the current day
+    while(increment > 0){
+    
+        unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+        unsigned int curr_day_in_month = day_in_month[month - 1];
+        if(month == 2 && leap_year_count == 3){
+            curr_day_in_month = 29;
+        }
+
+        day += 1;
+        if(day > curr_day_in_month){
+            increment_month(1);
+            day = 1;
+        }
+        increment -= 1;
+    } 
 }
+
+void increment_month(unsigned int increment){ //Increment the current month
+    while(increment > 0){
+    
+        month += 1;
+        if(month > 12){
+            month = 1;
+            leap_year_count += 1;
+            if(leap_year_count > 3){
+                leap_year_count = 0;
+            }
+        }
+        increment -= 1;
+    
+    }
+}
+
+

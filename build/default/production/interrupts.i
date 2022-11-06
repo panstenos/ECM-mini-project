@@ -24251,13 +24251,19 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-void Timer0_init(unsigned short);
+void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
-unsigned long set_time(unsigned long);
-unsigned long increment_time(unsigned long);
-float get_hour(void);
+void set_time(unsigned long);
 unsigned short test_mode;
+
+float get_hour(void);
+unsigned int get_day(void);
+unsigned int get_month(void);
+
+void increment_time(unsigned long);
+void increment_day(unsigned int);
+void increment_month(unsigned int);
 # 3 "interrupts.c" 2
 
 

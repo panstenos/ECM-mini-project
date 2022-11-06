@@ -24239,13 +24239,19 @@ unsigned char __t3rd16on(void);
 
 
 
-void Timer0_init(unsigned short);
+void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
-unsigned long set_time(unsigned long);
-unsigned long increment_time(unsigned long);
-float get_hour(void);
+void set_time(unsigned long);
 unsigned short test_mode;
+
+float get_hour(void);
+unsigned int get_day(void);
+unsigned int get_month(void);
+
+void increment_time(unsigned long);
+void increment_day(unsigned int);
+void increment_month(unsigned int);
 # 2 "timers.c" 2
 
 
@@ -24254,11 +24260,18 @@ unsigned short test_mode;
 
 
 unsigned long time_counter = 0;
+unsigned int day = 1;
+unsigned int month = 1;
+unsigned int leap_year_count = 0;
+
 unsigned short test_mode = 0;
 
-void Timer0_init(unsigned short init_test_mode)
+void Timer0_init(unsigned short init_test_mode,unsigned int current_day,unsigned int current_month, unsigned int leap_year)
 {
     test_mode = init_test_mode;
+    day = current_day;
+    month = current_month;
+    leap_year_count = 3 - leap_year;
 
     T0CON1bits.T0CS=0b010;
     T0CON1bits.T0ASYNC=1;
@@ -24290,7 +24303,6 @@ unsigned int get16bitTMR0val(void)
     unsigned int high_bits = TMR0H<<8;
 
     return(low_bits|high_bits);
-
 }
 
 unsigned long get_time(){
@@ -24298,15 +24310,26 @@ unsigned long get_time(){
     return time_counter;
 }
 
-unsigned long set_time(unsigned long time){
+float get_hour(){
+    return (float) time_counter/3600;
+}
+
+unsigned int get_day(){
+    return day;
+}
+unsigned int get_month(){
+    return month;
+}
+
+
+void set_time(unsigned long time){
     time_counter = time;
     if(time_counter >= 86401){
         time_counter = 0;
     }
-    return time_counter;
 }
 
-unsigned long increment_time(unsigned long increment){
+void increment_time(unsigned long increment){
 
     if(test_mode == 0){
         time_counter += increment;
@@ -24315,12 +24338,40 @@ unsigned long increment_time(unsigned long increment){
     }
     if(time_counter >= 86400){
         time_counter = 0;
+        increment_day(1);
     }
-    float flute = get_hour();
-    flute += 1;
-    return time_counter;
 }
 
-float get_hour(){
-    return (float) time_counter/3600;
+void increment_day(unsigned int increment){
+    while(increment > 0){
+
+        unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+        unsigned int curr_day_in_month = day_in_month[month - 1];
+        if(month == 2 && leap_year_count == 3){
+            curr_day_in_month = 29;
+        }
+
+        day += 1;
+        if(day > curr_day_in_month){
+            increment_month(1);
+            day = 1;
+        }
+        increment -= 1;
+    }
+}
+
+void increment_month(unsigned int increment){
+    while(increment > 0){
+
+        month += 1;
+        if(month > 12){
+            month = 1;
+            leap_year_count += 1;
+            if(leap_year_count > 3){
+                leap_year_count = 0;
+            }
+        }
+        increment -= 1;
+
+    }
 }

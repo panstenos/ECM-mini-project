@@ -24286,19 +24286,33 @@ void Comp1_init(void);
 
 
 
-void Timer0_init(unsigned short);
+void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
-unsigned long set_time(unsigned long);
-unsigned long increment_time(unsigned long);
-float get_hour(void);
+void set_time(unsigned long);
 unsigned short test_mode;
+
+float get_hour(void);
+unsigned int get_day(void);
+unsigned int get_month(void);
+
+void increment_time(unsigned long);
+void increment_day(unsigned int);
+void increment_month(unsigned int);
 # 12 "main.c" 2
 
+# 1 "./ADC.h" 1
 
 
 
 
+
+
+
+void ADC_init(void);
+unsigned int ADC_getval(void);
+# 13 "main.c" 2
+# 22 "main.c"
 void main(void) {
 
     LATHbits.LATH3=0;
@@ -24312,17 +24326,30 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(1);
+    Timer0_init(1,6,11,2);
     LEDarray_init();
+    ADC_init();
 
+    unsigned int curr_day;
+    unsigned int curr_month;
 
     while (1) {
-        float time = get_hour();
-        LEDarray_disp_bin((unsigned int) time);
-        if(time >= 5 && time <= 19){
+        float curr_hour = get_hour();
+        LEDarray_disp_bin((unsigned int) curr_hour);
+
+        if(curr_hour >= 1 && curr_hour <= 5){
             LATHbits.LATH3 = 0;
         }else{
             LATHbits.LATH3 = 1;
         }
+
+        curr_day = get_day();
+        curr_month = get_month();
+
+        curr_day += 1;
+        curr_month +=1;
+
+        increment_day(1);
+
     }
 }
