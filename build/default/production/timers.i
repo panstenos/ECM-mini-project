@@ -24239,13 +24239,15 @@ unsigned char __t3rd16on(void);
 
 
 
-void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
+void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 void set_time(unsigned long);
 unsigned short test_mode;
 
-float get_hour(void);
+unsigned int get_seconds(void);
+unsigned int get_minutes(void);
+unsigned int get_hour(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
@@ -24260,18 +24262,22 @@ void increment_month(unsigned int);
 
 
 unsigned long time_counter = 0;
+unsigned int day_of_the_week = 1;
 unsigned int day = 1;
 unsigned int month = 1;
-unsigned int leap_year_count = 0;
+unsigned int time_corrector = 0;
+unsigned int year = 2020;
 
 unsigned short test_mode = 0;
 
-void Timer0_init(unsigned short init_test_mode,unsigned int current_day,unsigned int current_month, unsigned int leap_year)
+void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
 {
     test_mode = init_test_mode;
+    time_counter = current_minute * 60 + current_hour * 3600;
     day = current_day;
+    day_of_the_week = current_day_of_the_week;
     month = current_month;
-    leap_year_count = 3 - leap_year;
+    year = current_year;
 
     T0CON1bits.T0CS=0b010;
     T0CON1bits.T0ASYNC=1;
@@ -24283,7 +24289,7 @@ void Timer0_init(unsigned short init_test_mode,unsigned int current_day,unsigned
         T0CON1bits.T0CKPS=8;
 
         TMR0H = 0b1011;
-        TMR0L = 0b11011100;
+        TMR0L = 0b11011011;
     }else{
         T0CON1bits.T0CKPS=0;
 
@@ -24310,8 +24316,16 @@ unsigned long get_time(){
     return time_counter;
 }
 
-float get_hour(){
-    return (float) time_counter/3600;
+unsigned int get_seconds(){
+    return (unsigned int) time_counter%60;
+}
+
+unsigned int get_minutes(){
+    return (unsigned int) (time_counter/60) % 60;
+}
+
+unsigned int get_hour(){
+    return (unsigned int) time_counter/3600;
 }
 
 unsigned int get_day(){
@@ -24349,18 +24363,38 @@ void increment_day(unsigned int increment){
 
         unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
         unsigned int curr_day_in_month = day_in_month[month - 1];
-        if(month == 2 && leap_year_count == 3){
+        if(month == 2 && (year - 2020)%4 == 0){
             curr_day_in_month = 29;
         }
 
         day += 1;
+        day_of_the_week += 1;
+
+        if(day_of_the_week == 8){
+            day_of_the_week = 1;
+        }
+
         if(day > curr_day_in_month){
             increment_month(1);
             day = 1;
         }
+
         increment -= 1;
     }
 }
+
+unsigned int check_for_hour_shift(){
+    if(day_of_the_week != 7){
+        return 0;
+    }
+    if(month == 3 && day + 7 <= 31){
+        return 1;
+    }
+    if(month == 10 && day + 7 <= 31){
+        return -1;
+    }
+}
+
 
 void increment_month(unsigned int increment){
     while(increment > 0){
@@ -24368,10 +24402,7 @@ void increment_month(unsigned int increment){
         month += 1;
         if(month > 12){
             month = 1;
-            leap_year_count += 1;
-            if(leap_year_count > 3){
-                leap_year_count = 0;
-            }
+            year += 1;
         }
         increment -= 1;
 

@@ -86,29 +86,45 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./interrupts.h: 8: void Interrupts_init(void);
 [v _Interrupts_init `(v ~T0 @X0 0 ef ]
 "8 ./timers.h
-[; ;./timers.h: 8: void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
-[v _Timer0_init `(v ~T0 @X0 0 ef4`us`ui`ui`ui ]
+[; ;./timers.h: 8: void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
+[v _Timer0_init `(v ~T0 @X0 0 ef7`us`ul`ul`ui`ui`ui`ui ]
 "9 ./LEDarray.h
 [; ;./LEDarray.h: 9: void LEDarray_init(void);
 [v _LEDarray_init `(v ~T0 @X0 0 ef ]
 "8 ./ADC.h
 [; ;./ADC.h: 8: void ADC_init(void);
 [v _ADC_init `(v ~T0 @X0 0 ef ]
-"14 ./timers.h
-[; ;./timers.h: 14: float get_hour(void);
-[v _get_hour `(f ~T0 @X0 0 ef ]
+"20 ./LCD.h
+[; ;./LCD.h: 20: void LCD_Init(void);
+[v _LCD_Init `(v ~T0 @X0 0 ef ]
+"16 ./timers.h
+[; ;./timers.h: 16: unsigned int get_hour(void);
+[v _get_hour `(ui ~T0 @X0 0 ef ]
 "10 ./LEDarray.h
 [; ;./LEDarray.h: 10: void LEDarray_disp_bin(unsigned int number);
 [v _LEDarray_disp_bin `(v ~T0 @X0 0 ef1`ui ]
-"15 ./timers.h
-[; ;./timers.h: 15: unsigned int get_day(void);
-[v _get_day `(ui ~T0 @X0 0 ef ]
-"16
-[; ;./timers.h: 16: unsigned int get_month(void);
-[v _get_month `(ui ~T0 @X0 0 ef ]
-"19
-[; ;./timers.h: 19: void increment_day(unsigned int);
-[v _increment_day `(v ~T0 @X0 0 ef1`ui ]
+"25 ./LCD.h
+[; ;./LCD.h: 25: void ADC2String(char *buf, unsigned int number);
+[v _ADC2String `(v ~T0 @X0 0 ef2`*uc`ui ]
+"9 ./ADC.h
+[; ;./ADC.h: 9: unsigned int ADC_getval(void);
+[v _ADC_getval `(ui ~T0 @X0 0 ef ]
+"14 ./timers.h
+[; ;./timers.h: 14: unsigned int get_seconds(void);
+[v _get_seconds `(ui ~T0 @X0 0 ef ]
+"15
+[; ;./timers.h: 15: unsigned int get_minutes(void);
+[v _get_minutes `(ui ~T0 @X0 0 ef ]
+"22 ./LCD.h
+[; ;./LCD.h: 22: void LCD_sendstring(char *strlst[8]);
+[v _LCD_sendstring `(v ~T0 @X0 0 ef1`**uc ]
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
+"24 ./LCD.h
+[; ;./LCD.h: 24: void LCD_clear(void);
+[v _LCD_clear `(v ~T0 @X0 0 ef ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2093,110 +2109,145 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./timers.h: 12: unsigned short test_mode;
 [v _test_mode `us ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"22 main.c
-[; ;main.c: 22: void main(void) {
+"26 main.c
+[; ;main.c: 26: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"24
-[; ;main.c: 24:     LATHbits.LATH3=0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"25
-[; ;main.c: 25:     TRISHbits.TRISH3=0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
-"27
-[; ;main.c: 27:     TRISDbits.TRISD7=0;
-[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "28
-[; ;main.c: 28:     LATDbits.LATD7=1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"30
-[; ;main.c: 30:     TRISAbits.TRISA3=1;
-[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 28:     LATHbits.LATH3=0;
+[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+"29
+[; ;main.c: 29:     TRISHbits.TRISH3=0;
+[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
+"31
+[; ;main.c: 31:     TRISDbits.TRISD7=0;
+[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
 "32
-[; ;main.c: 32:     LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"33
-[; ;main.c: 33:     Comp1_init();
-[e ( _Comp1_init ..  ]
+[; ;main.c: 32:     LATDbits.LATD7=1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "34
-[; ;main.c: 34:     Interrupts_init();
-[e ( _Interrupts_init ..  ]
-"35
-[; ;main.c: 35:     Timer0_init(1,06,11,2);
-[e ( _Timer0_init (4 , , , -> -> 1 `i `us -> -> 6 `i `ui -> -> 11 `i `ui -> -> 2 `i `ui ]
+[; ;main.c: 34:     TRISAbits.TRISA3=1;
+[e = . . _TRISAbits 0 3 -> -> 1 `i `uc ]
 "36
-[; ;main.c: 36:     LEDarray_init();
-[e ( _LEDarray_init ..  ]
+[; ;main.c: 36:     LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
 "37
-[; ;main.c: 37:     ADC_init();
-[e ( _ADC_init ..  ]
+[; ;main.c: 37:     Comp1_init();
+[e ( _Comp1_init ..  ]
+"38
+[; ;main.c: 38:     Interrupts_init();
+[e ( _Interrupts_init ..  ]
 "39
-[; ;main.c: 39:     unsigned int curr_day;
-[v _curr_day `ui ~T0 @X0 1 a ]
+[; ;main.c: 39:     Timer0_init(1,57,17,06,1,11,2022);
+[e ( _Timer0_init (4 , , , , , , -> -> 1 `i `us -> -> -> 57 `i `l `ul -> -> -> 17 `i `l `ul -> -> 6 `i `ui -> -> 1 `i `ui -> -> 11 `i `ui -> -> 2022 `i `ui ]
 "40
-[; ;main.c: 40:     unsigned int curr_month;
-[v _curr_month `ui ~T0 @X0 1 a ]
+[; ;main.c: 40:     LEDarray_init();
+[e ( _LEDarray_init ..  ]
+"41
+[; ;main.c: 41:     ADC_init();
+[e ( _ADC_init ..  ]
 "42
-[; ;main.c: 42:     while (1) {
+[; ;main.c: 42:     LCD_Init();
+[e ( _LCD_Init ..  ]
+"44
+[; ;main.c: 44:     unsigned int curr_day;
+[v _curr_day `ui ~T0 @X0 1 a ]
+"45
+[; ;main.c: 45:     unsigned int curr_month;
+[v _curr_month `ui ~T0 @X0 1 a ]
+"46
+[; ;main.c: 46:     char *buf;
+[v _buf `*uc ~T0 @X0 1 a ]
+"47
+[; ;main.c: 47:     char *buf1;
+[v _buf1 `*uc ~T0 @X0 1 a ]
+"48
+[; ;main.c: 48:     char *buf2;
+[v _buf2 `*uc ~T0 @X0 1 a ]
+"50
+[; ;main.c: 50:     while (1) {
 [e :U 2017 ]
 {
-"43
-[; ;main.c: 43:         float curr_hour = get_hour();
+"51
+[; ;main.c: 51:         float curr_hour = get_hour();
 [v _curr_hour `f ~T0 @X0 1 a ]
-[e = _curr_hour ( _get_hour ..  ]
-"44
-[; ;main.c: 44:         LEDarray_disp_bin((unsigned int) curr_hour);
+[e = _curr_hour -> ( _get_hour ..  `f ]
+"52
+[; ;main.c: 52:         LEDarray_disp_bin((unsigned int) curr_hour);
 [e ( _LEDarray_disp_bin (1 -> _curr_hour `ui ]
-"46
-[; ;main.c: 46:         if(curr_hour >= 1 && curr_hour <= 5){
+"54
+[; ;main.c: 54:         if(curr_hour >= 1 && curr_hour <= 5){
 [e $ ! && >= _curr_hour -> -> 1 `i `f <= _curr_hour -> -> 5 `i `f 2019  ]
 {
-"47
-[; ;main.c: 47:             LATHbits.LATH3 = 0;
+"55
+[; ;main.c: 55:             LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"48
-[; ;main.c: 48:         }else{
+"56
+[; ;main.c: 56:         }else{
 }
 [e $U 2020  ]
 [e :U 2019 ]
 {
-"49
-[; ;main.c: 49:             LATHbits.LATH3 = 1;
+"57
+[; ;main.c: 57:             LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"50
-[; ;main.c: 50:         }
+"58
+[; ;main.c: 58:         }
 }
 [e :U 2020 ]
-"52
-[; ;main.c: 52:         curr_day = get_day();
-[e = _curr_day ( _get_day ..  ]
-"53
-[; ;main.c: 53:         curr_month = get_month();
-[e = _curr_month ( _get_month ..  ]
-"54
-[; ;main.c: 54:         curr_day += 1;
-[e =+ _curr_day -> -> 1 `i `ui ]
-"55
-[; ;main.c: 55:         curr_day -=1;
-[e =- _curr_day -> -> 1 `i `ui ]
-"57
-[; ;main.c: 57:         curr_month += 1;
-[e =+ _curr_month -> -> 1 `i `ui ]
-"58
-[; ;main.c: 58:         curr_month -=1;
-[e =- _curr_month -> -> 1 `i `ui ]
-"59
-[; ;main.c: 59:         increment_day(1);
-[e ( _increment_day (1 -> -> 1 `i `ui ]
-"61
-[; ;main.c: 61:     }
+"60
+[; ;main.c: 60:         ADC2String(*buf,ADC_getval());
+[e ( _ADC2String (2 , -> *U _buf `*uc ( _ADC_getval ..  ]
+"62
+[; ;main.c: 62:         ADC2String(*buf,get_seconds());
+[e ( _ADC2String (2 , -> *U _buf `*uc ( _get_seconds ..  ]
+"63
+[; ;main.c: 63:         ADC2String(*buf1,get_minutes());
+[e ( _ADC2String (2 , -> *U _buf1 `*uc ( _get_minutes ..  ]
+"64
+[; ;main.c: 64:         ADC2String(*buf2,get_hour());
+[e ( _ADC2String (2 , -> *U _buf2 `*uc ( _get_hour ..  ]
+[v F14269 `*uc ~T0 @X0 -> 8 `i s ]
+[i F14269
+:U ..
+"66
+[; ;main.c: 66:         char *text[8] = {"MON", "30","10","2022",*buf2,*buf1,*buf,"123"};
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+-> -> 0 `i `*uc
+..
+]
+[v _text `*uc ~T0 @X0 -> 8 `i a ]
+[e = _text F14269 ]
+[e ; = *U + &U _text * -> -> -> 0 `i `ui `ux -> -> # *U &U _text `ui `ux :s 1C ; = *U + &U _text * -> -> -> 1 `i `ui `ux -> -> # *U &U _text `ui `ux :s 2C ; = *U + &U _text * -> -> -> 2 `i `ui `ux -> -> # *U &U _text `ui `ux :s 3C ; = *U + &U _text * -> -> -> 3 `i `ui `ux -> -> # *U &U _text `ui `ux :s 4C ; = *U + &U _text * -> -> -> 4 `i `ui `ux -> -> # *U &U _text `ui `ux -> *U _buf2 `*uc ; = *U + &U _text * -> -> -> 5 `i `ui `ux -> -> # *U &U _text `ui `ux -> *U _buf1 `*uc ; = *U + &U _text * -> -> -> 6 `i `ui `ux -> -> # *U &U _text `ui `ux -> *U _buf `*uc = *U + &U _text * -> -> -> 7 `i `ui `ux -> -> # *U &U _text `ui `ux :s 5C ]
+"68
+[; ;main.c: 68:         LCD_sendstring(text);
+[e ( _LCD_sendstring (1 &U _text ]
+"71
+[; ;main.c: 71:         _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"72
+[; ;main.c: 72:         LCD_clear();
+[e ( _LCD_clear ..  ]
+"73
+[; ;main.c: 73:     }
 }
 [e :U 2016 ]
 [e $U 2017  ]
 [e :U 2018 ]
-"62
-[; ;main.c: 62: }
+"74
+[; ;main.c: 74: }
 [e :UE 2015 ]
 }
+[a 1C 77 79 78 0 ]
+[a 5C 49 50 51 0 ]
+[a 4C 50 48 50 50 0 ]
+[a 2C 51 48 0 ]
+[a 3C 49 48 0 ]

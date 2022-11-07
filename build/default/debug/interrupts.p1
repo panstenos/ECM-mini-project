@@ -102,8 +102,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5103
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 5103: extern volatile PIR0bits_t PIR0bits __attribute__((address(0xE33)));
 [v _PIR0bits `VS285 ~T0 @X0 0 e@3635 ]
-"18 ./timers.h
-[; ;./timers.h: 18: void increment_time(unsigned long);
+"20 ./timers.h
+[; ;./timers.h: 20: void increment_time(unsigned long);
 [v _increment_time `(v ~T0 @X0 0 ef1`ul ]
 "39327 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39327: extern volatile unsigned char TMR0H __attribute__((address(0xFD4)));
@@ -2156,8 +2156,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;interrupts.c: 36:             TMR0H = 0b1011;
 [e = _TMR0H -> -> 11 `i `uc ]
 "37
-[; ;interrupts.c: 37:             TMR0L = 0b11011100;
-[e = _TMR0L -> -> 220 `i `uc ]
+[; ;interrupts.c: 37:             TMR0L = 0b11011011;
+[e = _TMR0L -> -> 219 `i `uc ]
 "38
 [; ;interrupts.c: 38:         }else{
 }

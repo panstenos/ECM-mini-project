@@ -4,4 +4,5 @@ LEDarray.h  \
 interrupts.h  \
 comparator.h  \
 timers.h  \
-ADC.h 
+ADC.h  \
+LCD.h 

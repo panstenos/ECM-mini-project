@@ -24286,13 +24286,15 @@ void Comp1_init(void);
 
 
 
-void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
+void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 void set_time(unsigned long);
 unsigned short test_mode;
 
-float get_hour(void);
+unsigned int get_seconds(void);
+unsigned int get_minutes(void);
+unsigned int get_hour(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
@@ -24312,7 +24314,20 @@ void increment_month(unsigned int);
 void ADC_init(void);
 unsigned int ADC_getval(void);
 # 13 "main.c" 2
-# 22 "main.c"
+
+# 1 "./LCD.h" 1
+# 17 "./LCD.h"
+void LCD_E_TOG(void);
+void LCD_sendnibble(unsigned char number);
+void LCD_sendbyte(unsigned char Byte, char type);
+void LCD_Init(void);
+void LCD_setline (char line);
+void LCD_sendstring(char *strlst[8]);
+void LCD_scroll(int);
+void LCD_clear(void);
+void ADC2String(char *buf, unsigned int number);
+# 14 "main.c" 2
+# 26 "main.c"
 void main(void) {
 
     LATHbits.LATH3=0;
@@ -24326,12 +24341,14 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(1,06,11,2);
+    Timer0_init(1,57,17,06,1,11,2022);
     LEDarray_init();
     ADC_init();
+    LCD_Init();
 
     unsigned int curr_day;
     unsigned int curr_month;
+    char *buf;
 
     while (1) {
         float curr_hour = get_hour();
@@ -24343,14 +24360,20 @@ void main(void) {
             LATHbits.LATH3 = 1;
         }
 
-        curr_day = get_day();
-        curr_month = get_month();
-        curr_day += 1;
-        curr_day -=1;
+        unsigned int test = ADC_getval();
+        test += 1;
 
-        curr_month += 1;
-        curr_month -=1;
-        increment_day(1);
+        ADC2String(*buf,ADC_getval());
+
+
+
+
+
+        char *text[8] = {"MON", "30","10","2022","23","25","58",*buf};
+
+        LCD_sendstring(text);
+
+
 
     }
 }

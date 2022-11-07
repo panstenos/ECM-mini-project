@@ -34,7 +34,7 @@ void __interrupt(high_priority) HighISR()
         
         if(test_mode == 0){
             TMR0H = 0b1011;
-            TMR0L = 0b11011100;
+            TMR0L = 0b11011011;
         }else{
             TMR0H = 0;
             TMR0L = 0;

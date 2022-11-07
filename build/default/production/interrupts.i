@@ -24251,13 +24251,15 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-void Timer0_init(unsigned short,unsigned int,unsigned int,unsigned int);
+void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
 unsigned long get_time(void);
 void set_time(unsigned long);
 unsigned short test_mode;
 
-float get_hour(void);
+unsigned int get_seconds(void);
+unsigned int get_minutes(void);
+unsigned int get_hour(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
@@ -24299,7 +24301,7 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR()
 
         if(test_mode == 0){
             TMR0H = 0b1011;
-            TMR0L = 0b11011100;
+            TMR0L = 0b11011011;
         }else{
             TMR0H = 0;
             TMR0L = 0;

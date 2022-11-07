@@ -11,13 +11,17 @@
 #include "comparator.h"
 #include "timers.h"
 #include "ADC.h"
+#include "LCD.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 #define _TEST_MODE 1
-#define _CURRENT_DAY 06 //Current day on the installation
-#define _CURRENT_MONTH 11 //Current month on the installation
-#define _LEAP_YEAR 2 //In how many year will there be a leap year. If there was or will be a leap year this year, input 0
+#define _CURRENT_MINUTE 57 // from 0 to 59
+#define _CURRENT_HOUR 17 // from 0 to 23
+#define _DAY_OF_THE_WEEK 1 // 1 for monday, 7 for sunday
+#define _CURRENT_DAY 06 //Current day on the installation (from 1 to 30/31 depending on the month)
+#define _CURRENT_MONTH 11 //Current month on the installation (from 1 to 12)
+#define _CURRENT_YEAR 2022 //Current year
 
 void main(void) {
 	//call your initialisation functions to set up the hardware modules
@@ -32,12 +36,16 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(_TEST_MODE,_CURRENT_DAY,_CURRENT_MONTH,_LEAP_YEAR);
+    Timer0_init(_TEST_MODE,_CURRENT_MINUTE,_CURRENT_HOUR,_CURRENT_DAY,_DAY_OF_THE_WEEK,_CURRENT_MONTH,_CURRENT_YEAR);
     LEDarray_init();
     ADC_init();
+    LCD_Init();
 
     unsigned int curr_day;
     unsigned int curr_month;
+    char *buf;
+    char *buf1;
+    char *buf2;
 
     while (1) {
         float curr_hour = get_hour();
@@ -49,14 +57,18 @@ void main(void) {
             LATHbits.LATH3 = 1;
         }
         
-        curr_day = get_day();
-        curr_month = get_month();
-        curr_day += 1;
-        curr_day -=1;
+        ADC2String(*buf,ADC_getval()); // Convert integer to string
+
+        ADC2String(*buf,get_seconds());
+        ADC2String(*buf1,get_minutes());
+        ADC2String(*buf2,get_hour());
         
-        curr_month += 1;
-        curr_month -=1;
-        increment_day(1);
+        char *text[8] = {"MON", "30","10","2022",*buf2,*buf1,*buf,"123"};
         
+        LCD_sendstring(text);
+        
+        
+        __delay_ms(100);
+        LCD_clear();
     }
 }
