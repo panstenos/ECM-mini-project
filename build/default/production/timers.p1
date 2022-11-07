@@ -2244,63 +2244,77 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _increment_time ]
 [v _increment `ul ~T0 @X0 1 r1 ]
 [f ]
+"79
+[; ;timers.c: 79:     while(increment > 0){
+[e $U 2026  ]
+[e :U 2027 ]
+{
 "80
-[; ;timers.c: 80:     if(test_mode == 0){
-[e $ ! == -> _test_mode `ui -> -> 0 `i `ui 2026  ]
+[; ;timers.c: 80:         if(test_mode == 0){
+[e $ ! == -> _test_mode `ui -> -> 0 `i `ui 2029  ]
 {
 "81
-[; ;timers.c: 81:         time_counter += increment;
+[; ;timers.c: 81:             time_counter += increment;
 [e =+ _time_counter _increment ]
 "82
-[; ;timers.c: 82:     }else{
+[; ;timers.c: 82:         }else{
 }
-[e $U 2027  ]
-[e :U 2026 ]
+[e $U 2030  ]
+[e :U 2029 ]
 {
 "83
-[; ;timers.c: 83:         time_counter += increment*15;
+[; ;timers.c: 83:             time_counter += increment*15;
 [e =+ _time_counter * _increment -> -> -> 15 `i `l `ul ]
 "84
-[; ;timers.c: 84:     }
+[; ;timers.c: 84:         }
 }
-[e :U 2027 ]
+[e :U 2030 ]
 "85
-[; ;timers.c: 85:     if(time_counter >= 86400){
-[e $ ! >= _time_counter -> -> 86400 `l `ul 2028  ]
+[; ;timers.c: 85:         if(time_counter >= 86400){
+[e $ ! >= _time_counter -> -> 86400 `l `ul 2031  ]
 {
 "86
-[; ;timers.c: 86:         time_counter = 0;
+[; ;timers.c: 86:             time_counter = 0;
 [e = _time_counter -> -> -> 0 `i `l `ul ]
 "87
-[; ;timers.c: 87:         increment_day(1);
+[; ;timers.c: 87:             increment_day(1);
 [e ( _increment_day (1 -> -> 1 `i `ui ]
 "88
-[; ;timers.c: 88:     }
+[; ;timers.c: 88:         }
 }
-[e :U 2028 ]
+[e :U 2031 ]
 "89
-[; ;timers.c: 89: }
+[; ;timers.c: 89:     increment -= 1;
+[e =- _increment -> -> -> 1 `i `l `ul ]
+"90
+[; ;timers.c: 90:     }
+}
+[e :U 2026 ]
+"79
+[; ;timers.c: 79:     while(increment > 0){
+[e $ > _increment -> -> -> 0 `i `l `ul 2027  ]
+[e :U 2028 ]
+"91
+[; ;timers.c: 91: }
 [e :UE 2025 ]
 }
-"91
-[; ;timers.c: 91: void increment_day(unsigned int increment){
+"93
+[; ;timers.c: 93: void increment_day(unsigned int increment){
 [v _increment_day `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _increment_day ]
 [v _increment `ui ~T0 @X0 1 r1 ]
 [f ]
-"92
-[; ;timers.c: 92:     if(increment == 0){return;}
-[e $ ! == _increment -> -> 0 `i `ui 2030  ]
+"94
+[; ;timers.c: 94:     while(increment > 0){
+[e $U 2033  ]
+[e :U 2034 ]
 {
-[e $UE 2029  ]
-}
-[e :U 2030 ]
 [v F14249 `ui ~T0 @X0 -> 12 `i s ]
 [i F14249
 :U ..
-"94
-[; ;timers.c: 94:     unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+"96
+[; ;timers.c: 96:         unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 -> -> 31 `i `ui
 -> -> 28 `i `ui
 -> -> 31 `i `ui
@@ -2317,91 +2331,105 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 [v _day_in_month `ui ~T0 @X0 -> 12 `i a ]
 [e = _day_in_month F14249 ]
-"95
-[; ;timers.c: 95:     unsigned int curr_day_in_month = day_in_month[month - 1];
+"97
+[; ;timers.c: 97:         unsigned int curr_day_in_month = day_in_month[month - 1];
 [v _curr_day_in_month `ui ~T0 @X0 1 a ]
 [e = _curr_day_in_month *U + &U _day_in_month * -> - _month -> -> 1 `i `ui `ux -> -> # *U &U _day_in_month `ui `ux ]
-"96
-[; ;timers.c: 96:     if(month == 2 && leap_year_count == 3){
-[e $ ! && == _month -> -> 2 `i `ui == _leap_year_count -> -> 3 `i `ui 2031  ]
-{
-"97
-[; ;timers.c: 97:         curr_day_in_month = 29;
-[e = _curr_day_in_month -> -> 29 `i `ui ]
 "98
-[; ;timers.c: 98:     }
-}
-[e :U 2031 ]
-"100
-[; ;timers.c: 100:     day += 1;
-[e =+ _day -> -> 1 `i `ui ]
-"101
-[; ;timers.c: 101:     if(day > curr_day_in_month){
-[e $ ! > _day _curr_day_in_month 2032  ]
+[; ;timers.c: 98:         if(month == 2 && leap_year_count == 3){
+[e $ ! && == _month -> -> 2 `i `ui == _leap_year_count -> -> 3 `i `ui 2036  ]
 {
+"99
+[; ;timers.c: 99:             curr_day_in_month = 29;
+[e = _curr_day_in_month -> -> 29 `i `ui ]
+"100
+[; ;timers.c: 100:         }
+}
+[e :U 2036 ]
 "102
-[; ;timers.c: 102:         increment_month(1);
-[e ( _increment_month (1 -> -> 1 `i `ui ]
+[; ;timers.c: 102:         day += 1;
+[e =+ _day -> -> 1 `i `ui ]
 "103
-[; ;timers.c: 103:         day = 1;
-[e = _day -> -> 1 `i `ui ]
+[; ;timers.c: 103:         if(day > curr_day_in_month){
+[e $ ! > _day _curr_day_in_month 2037  ]
+{
 "104
-[; ;timers.c: 104:     }
-}
-[e :U 2032 ]
+[; ;timers.c: 104:             increment_month(1);
+[e ( _increment_month (1 -> -> 1 `i `ui ]
+"105
+[; ;timers.c: 105:             day = 1;
+[e = _day -> -> 1 `i `ui ]
 "106
-[; ;timers.c: 106:     increment_day(increment - 1);
-[e ( _increment_day (1 - _increment -> -> 1 `i `ui ]
-"107
-[; ;timers.c: 107: }
-[e :UE 2029 ]
+[; ;timers.c: 106:         }
 }
+[e :U 2037 ]
+"107
+[; ;timers.c: 107:         increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"108
+[; ;timers.c: 108:     }
+}
+[e :U 2033 ]
+"94
+[; ;timers.c: 94:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2034  ]
+[e :U 2035 ]
 "109
-[; ;timers.c: 109: void increment_month(unsigned int increment){
+[; ;timers.c: 109: }
+[e :UE 2032 ]
+}
+"111
+[; ;timers.c: 111: void increment_month(unsigned int increment){
 [v _increment_month `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _increment_month ]
 [v _increment `ui ~T0 @X0 1 r1 ]
 [f ]
-"110
-[; ;timers.c: 110:     if(increment == 0){return;}
-[e $ ! == _increment -> -> 0 `i `ui 2034  ]
-{
-[e $UE 2033  ]
-}
-[e :U 2034 ]
 "112
-[; ;timers.c: 112:     month += 1;
-[e =+ _month -> -> 1 `i `ui ]
-"113
-[; ;timers.c: 113:     if(month > 12){
-[e $ ! > _month -> -> 12 `i `ui 2035  ]
+[; ;timers.c: 112:     while(increment > 0){
+[e $U 2039  ]
+[e :U 2040 ]
 {
 "114
-[; ;timers.c: 114:         month = 1;
-[e = _month -> -> 1 `i `ui ]
+[; ;timers.c: 114:         month += 1;
+[e =+ _month -> -> 1 `i `ui ]
 "115
-[; ;timers.c: 115:         leap_year_count += 1;
-[e =+ _leap_year_count -> -> 1 `i `ui ]
-"116
-[; ;timers.c: 116:         if(leap_year_count > 3){
-[e $ ! > _leap_year_count -> -> 3 `i `ui 2036  ]
+[; ;timers.c: 115:         if(month > 12){
+[e $ ! > _month -> -> 12 `i `ui 2042  ]
 {
+"116
+[; ;timers.c: 116:             month = 1;
+[e = _month -> -> 1 `i `ui ]
 "117
-[; ;timers.c: 117:             leap_year_count = 0;
-[e = _leap_year_count -> -> 0 `i `ui ]
+[; ;timers.c: 117:             leap_year_count += 1;
+[e =+ _leap_year_count -> -> 1 `i `ui ]
 "118
-[; ;timers.c: 118:         }
-}
-[e :U 2036 ]
+[; ;timers.c: 118:             if(leap_year_count > 3){
+[e $ ! > _leap_year_count -> -> 3 `i `ui 2043  ]
+{
 "119
-[; ;timers.c: 119:     }
+[; ;timers.c: 119:                 leap_year_count = 0;
+[e = _leap_year_count -> -> 0 `i `ui ]
+"120
+[; ;timers.c: 120:             }
 }
-[e :U 2035 ]
+[e :U 2043 ]
 "121
-[; ;timers.c: 121:     increment_month(increment - 1);
-[e ( _increment_month (1 - _increment -> -> 1 `i `ui ]
+[; ;timers.c: 121:         }
+}
+[e :U 2042 ]
 "122
-[; ;timers.c: 122: }
-[e :UE 2033 ]
+[; ;timers.c: 122:         increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"124
+[; ;timers.c: 124:     }
+}
+[e :U 2039 ]
+"112
+[; ;timers.c: 112:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2040  ]
+[e :U 2041 ]
+"125
+[; ;timers.c: 125: }
+[e :UE 2038 ]
 }

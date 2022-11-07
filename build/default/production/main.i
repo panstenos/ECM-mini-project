@@ -24326,7 +24326,7 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(1,6,11,2);
+    Timer0_init(1,06,11,2);
     LEDarray_init();
     ADC_init();
 
@@ -24345,10 +24345,11 @@ void main(void) {
 
         curr_day = get_day();
         curr_month = get_month();
-
         curr_day += 1;
-        curr_month +=1;
+        curr_day -=1;
 
+        curr_month += 1;
+        curr_month -=1;
         increment_day(1);
 
     }

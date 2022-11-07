@@ -76,15 +76,17 @@ void set_time(unsigned long time){ //Set time in seconds
 }
 
 void increment_time(unsigned long increment){ //increment time in seconds
-    
-    if(test_mode == 0){
-        time_counter += increment;
-    }else{
-        time_counter += increment*15;
-    }
-    if(time_counter >= 86400){ //Reset time counter after 1 day
-        time_counter = 0;
-        increment_day(1);
+    while(increment > 0){
+        if(test_mode == 0){
+            time_counter += increment;
+        }else{
+            time_counter += increment*15;
+        }
+        if(time_counter >= 86400){ //Reset time counter after 1 day
+            time_counter = 0;
+            increment_day(1);
+        }
+    increment -= 1;
     }
 }
 

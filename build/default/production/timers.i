@@ -24330,47 +24330,50 @@ void set_time(unsigned long time){
 }
 
 void increment_time(unsigned long increment){
-
-    if(test_mode == 0){
-        time_counter += increment;
-    }else{
-        time_counter += increment*15;
-    }
-    if(time_counter >= 86400){
-        time_counter = 0;
-        increment_day(1);
+    while(increment > 0){
+        if(test_mode == 0){
+            time_counter += increment;
+        }else{
+            time_counter += increment*15;
+        }
+        if(time_counter >= 86400){
+            time_counter = 0;
+            increment_day(1);
+        }
+    increment -= 1;
     }
 }
 
 void increment_day(unsigned int increment){
-    if(increment == 0){return;}
+    while(increment > 0){
 
-    unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
-    unsigned int curr_day_in_month = day_in_month[month - 1];
-    if(month == 2 && leap_year_count == 3){
-        curr_day_in_month = 29;
+        unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+        unsigned int curr_day_in_month = day_in_month[month - 1];
+        if(month == 2 && leap_year_count == 3){
+            curr_day_in_month = 29;
+        }
+
+        day += 1;
+        if(day > curr_day_in_month){
+            increment_month(1);
+            day = 1;
+        }
+        increment -= 1;
     }
-
-    day += 1;
-    if(day > curr_day_in_month){
-        increment_month(1);
-        day = 1;
-    }
-
-    increment_day(increment - 1);
 }
 
 void increment_month(unsigned int increment){
-    if(increment == 0){return;}
+    while(increment > 0){
 
-    month += 1;
-    if(month > 12){
-        month = 1;
-        leap_year_count += 1;
-        if(leap_year_count > 3){
-            leap_year_count = 0;
+        month += 1;
+        if(month > 12){
+            month = 1;
+            leap_year_count += 1;
+            if(leap_year_count > 3){
+                leap_year_count = 0;
+            }
         }
-    }
+        increment -= 1;
 
-    increment_month(increment - 1);
+    }
 }

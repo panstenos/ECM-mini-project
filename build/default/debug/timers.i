@@ -24263,6 +24263,7 @@ unsigned long time_counter = 0;
 unsigned int day = 1;
 unsigned int month = 1;
 unsigned int leap_year_count = 0;
+float test_time_corrector = 0;
 
 unsigned short test_mode = 0;
 
@@ -24330,15 +24331,23 @@ void set_time(unsigned long time){
 }
 
 void increment_time(unsigned long increment){
+    while(increment > 0){
+        if(test_mode == 0){
+            time_counter += 1;
+        }else{
+            time_counter += 1*15;
 
-    if(test_mode == 0){
-        time_counter += increment;
-    }else{
-        time_counter += increment*15;
-    }
-    if(time_counter >= 86400){
-        time_counter = 0;
-        increment_day(1);
+
+
+
+
+
+        }
+        if(time_counter >= 86400){
+            time_counter = 0;
+            increment_day(1);
+        }
+    increment -= 1;
     }
 }
 

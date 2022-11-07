@@ -2124,8 +2124,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 34:     Interrupts_init();
 [e ( _Interrupts_init ..  ]
 "35
-[; ;main.c: 35:     Timer0_init(1,28,11,1);
-[e ( _Timer0_init (4 , , , -> -> 1 `i `us -> -> 28 `i `ui -> -> 11 `i `ui -> -> 1 `i `ui ]
+[; ;main.c: 35:     Timer0_init(1,06,11,2);
+[e ( _Timer0_init (4 , , , -> -> 1 `i `us -> -> 6 `i `ui -> -> 11 `i `ui -> -> 2 `i `ui ]
 "36
 [; ;main.c: 36:     LEDarray_init();
 [e ( _LEDarray_init ..  ]

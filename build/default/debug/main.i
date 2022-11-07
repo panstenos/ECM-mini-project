@@ -24326,7 +24326,7 @@ void main(void) {
     LATHbits.LATH3 = 1;
     Comp1_init();
     Interrupts_init();
-    Timer0_init(1,28,11,1);
+    Timer0_init(1,06,11,2);
     LEDarray_init();
     ADC_init();
 
