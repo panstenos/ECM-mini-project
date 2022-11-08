@@ -2,6 +2,7 @@
 #include "interrupts.h"
 #include "timers.h"
 
+//extern int seconds;
 /************************************
  * Function to turn on interrupts and set if priority is used
  * Note you also need to enable peripheral interrupts in the INTCON register to use CM1IE.
@@ -22,10 +23,14 @@ void __interrupt(high_priority) HighISR()
 {   
     if(PIR0bits.TMR0IF == 1){//check the interrupt flag
         LATHbits.LATH3 = !LATHbits.LATH3; //toggle the LED
-        increment_seconds(); // call increment seconds function and add 1
-        // set the timer to reset at 3035 every time the it overflows
-        TMR0H=0b00001011;            
-        TMR0L=0b11011011;
+increment_seconds();        // set the timer to reset at 3035 every time the it overflows
+    if(test_mode == 0){
+            TMR0H=0b00001011;            
+            TMR0L=0b11011011;
+    }else{
+            TMR0H=0;            
+            TMR0L=0;
+    }
         PIR0bits.TMR0IF = 0; // turn flag off
 	}
 }
