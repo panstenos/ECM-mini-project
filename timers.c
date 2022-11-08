@@ -5,46 +5,24 @@
  * Function to set up timer 0
 ************************************/
 
-unsigned int day_of_the_week = 1;
-unsigned int *seconds = 1;
-unsigned int *hours = 1;
-unsigned int *minutes = 1;
-unsigned int *day = 1;
-unsigned int *month = 1;
-unsigned int *year = 2020;
-
-unsigned char day_names[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
-
-
-unsigned short test_mode = 0;
-
-void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
+int seconds = 0; 
+int minutes = 0;
+int hours = 0;
+int day = 1;
+int week_day = 2;
+int month = 0;
+int year = 2020;
+int month_days[12] = {31,28,31,30,31,31,30,31,30,31,30,31};
+void Timer0_init(void)
 {
-    test_mode = init_test_mode; //Set the test_mode value
-    minutes = current_minute;
-    hours = current_hour;
-    day = current_day;
-    day_of_the_week = current_day_of_the_week;
-    month = current_month;
-    year = current_year;
-
     T0CON1bits.T0CS=0b010; // Fosc/4
     T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
+    T0CON1bits.T0CKPS=0b1000; // 1:256 -> required: 1:244.14
+    T0CON0bits.T016BIT=1;	//8bit mode	
     
-    T0CON0bits.T016BIT=1;	//16bit mode	
-    // it's a good idea to initialise the timer registers so we know we are at 0
-    if(test_mode == 0){
-        
-        T0CON1bits.T0CKPS=8; // 1:16000000 Set the overflow every second
-
-        TMR0H = 0b1011;
-        TMR0L = 0b11011011;
-    }else{
-        T0CON1bits.T0CKPS=0; // Trigger the overflow every 1/15s (precisely 1/14.7456 s)
-
-        TMR0H = 0;
-        TMR0L = 0;
-    }
+    // initialise the time registers to 3035 for the LED to toggle every one second
+    TMR0H=0b00001011;            
+    TMR0L=0b11011011;
     T0CON0bits.T0EN=1;	//start the timer
 }
 
@@ -54,99 +32,62 @@ void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsi
 ************************************/
 unsigned int get16bitTMR0val(void)
 {
-    unsigned int low_bits = TMR0L;
-    unsigned int high_bits = TMR0H<<8;
+	return TMR0L | (TMR0H << 8); //use bitwise operator to combine the H and L bits
+}
+
+void increment_seconds(void){ //increment time in seconds
     
-    return(low_bits|high_bits);
-}
-
-unsigned int get_seconds(){
-    //Get the current time in seconds
-    return seconds;
-}
-
-unsigned int get_minutes(){
-    return minutes;
-}
-
-unsigned int get_hours(){
-    return hours;
-}
-
-unsigned int get_day(){
-    return day;
-}
-unsigned int get_month(){
-    return month;
-}
-
-unsigned int * get_time(){
-    unsigned int  r[7] = {seconds, minutes, hours, day, day_of_the_week,month,year};
-    return r;
-}
-
-void increment_seconds(unsigned int increment){ //increment time in seconds
-    if(test_mode == 1){
-            increment *= 15;
-        }
-    while(increment > 0){
-        seconds += 1;
-        if(seconds == 60){ //Reset time counter after 1 day
-            seconds = 0;
-            increment_minutes(1);
-        }
-    increment -= 1;
+    seconds ++ ; // increment by the second
+    if (seconds == 60){ // if you reach 60 sec
+        seconds = 0; // reset seconds to 0
+        minutes ++ ; // increse minutes by 1 
     }
-}
-
-void increment_minutes(unsigned int increment){
-    while(increment > 0){
-        minutes += 1;
-        if(minutes == 60){
-            minutes = 0;
-            increment_hours(1);
-        }
-        increment -= 1;
+    if (minutes == 60){ 
+        minutes = 0; //reset minutes to 0
+        hours ++ ; // increase hours by 1
     }
-}
-
-void increment_hours(unsigned int increment){
-    while(increment > 0){
-        hours += 1;
-        if(hours == 24){
-            hours = 0;
-            increment_day(1);
-        }
-        increment -= 1;
+    if (hours == 24){
+        hours = 0; //reset hours to 0
+        day ++ ; // increase day count by 1
+        week_day ++; // increase day of week by 1
     }
-}
-
-void increment_day(unsigned int increment){ //Increment the current day
-    while(increment > 0){
-    
-        unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
-        unsigned int curr_day_in_month = day_in_month[month - 1];
-        if(month == 2 && (year - 2020)%4 == 0){
-            curr_day_in_month = 29;
+    if (week_day == 7){ // if the day is Sunday
+        week_day = 0; //reset count to Monday
+    }
+    if (month == 1 && year%4 == 0){ // check for leap year
+        if (week_day == 30) // check if its after the 29th of February
+        {
+            week_day = 1; // reset the days
+            month += 1; // add a month
         }
-
-        day += 1;
-        day_of_the_week += 1;
-        
-        if(day_of_the_week == 8){
-            day_of_the_week = 1;
-        }
-        
-        if(day > curr_day_in_month){
-            increment_month(1);
+    }else{
+        if (day == month_days[month]+1) //else just check for the days
+        {
             day = 1;
+            month += 1;
         }
-               
-        increment -= 1;
-    } 
+    }
+    if (month == 12) // when the month reaches 12
+    {
+        month = 0;
+        year += 1;   
+    }
+    
 }
 
-int check_for_hour_shift(){
+void get(int *Sec, int *Min, int *Hou, int *Day, int *Week_day, int *Mon, int *Yea)
+{
+    *Sec = seconds;
+    *Min = minutes;
+    *Hou = hours;
+    *Day = day;
+    *Week_day = week_day;
+    *Mon = month;
+    *Yea = year;
+}
+
+/*
+unsigned int check_for_hour_shift(void){
     if(day_of_the_week != 7){
         return 0;
     }
@@ -157,19 +98,4 @@ int check_for_hour_shift(){
         return -1;
     }
 }
-
-
-void increment_month(unsigned int increment){ //Increment the current month
-    while(increment > 0){
-    
-        month += 1;
-        if(month > 12){
-            month = 1;
-            year += 1;
-        }
-        increment -= 1;
-    
-    }
-}
-
-
+*/
