@@ -169,17 +169,43 @@ void LCD_scroll(int max) //scrolls back and forth; input maximum length among th
  * the result is stored in buf as ascii text ready for display on LCD
  * Note result is stored in a buffer using pointers, it is not sent to the LCD
 ************************************/
-void ADC2String(char *buf, unsigned int ADC_val){
-    //code to calculate the inegeter and fractions part of a ADC value
-    //int int_part;
-    //int frac_part;
-    //float num = 255/3.3;
-    //int_part = ADC_val/num;
-    //frac_part = (ADC_val*100)/num - int_part*100;
-    //sprintf(buf, "V = %d.%02d",int_part, frac_part);
-    // and format as a string using sprintf (see GitHub readme)
-    sprintf(buf, "%d",ADC_val); //convert integer to float
-    //sprintf(buf, "x = %0.2d",ADC_val);
+void ADC2String(char *buf, unsigned int ADC_val,int number){
+    if(number == 1){
+        sprintf(buf, "%d",ADC_val); //convert integer to float
+
+    }else if(number == 2){
+        sprintf(buf, "%02d",ADC_val);
+    }else if(number == 3){
+        sprintf(buf, "%03d",ADC_val);
+    }else{
+        sprintf(buf, "%04d",ADC_val);
+    }
             
+}
+
+void display_informations(unsigned int time[],unsigned int adc_val){
+    char *seconds;
+    char *minutes;
+    char *hours;
+    char *day;
+    char *month;
+    char *year;
+    
+    char *adcval;
+    
+    ADC2String(*seconds,time[0],2);
+    ADC2String(*minutes,time[1],2);
+    ADC2String(*hours,time[2],2);
+    ADC2String(*day,time[4],2);
+    ADC2String(*month,time[5],2);
+    ADC2String(*year,time[6],4);
+    
+    ADC2String(*adcval,adc_val,3);
+    
+    
+    
+    LCD_sendstring({time[3],*day,*month,*year,*hours,*minutes,*seconds,*adcval});
+
+    
 }
 

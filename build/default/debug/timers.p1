@@ -43,7 +43,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39189
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39189: extern volatile unsigned char TMR0L __attribute__((address(0xFD3)));
 [v _TMR0L `Vuc ~T0 @X0 0 e@4051 ]
-"21 ./timers.h
+"19 ./timers.h
+[; ;./timers.h: 19: void increment_minutes(unsigned int);
+[v _increment_minutes `(v ~T0 @X0 0 ef1`ui ]
+"20
+[; ;./timers.h: 20: void increment_hours(unsigned int);
+[v _increment_hours `(v ~T0 @X0 0 ef1`ui ]
+"21
 [; ;./timers.h: 21: void increment_day(unsigned int);
 [v _increment_day `(v ~T0 @X0 0 ef1`ui ]
 "22
@@ -2023,60 +2029,72 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"12 ./timers.h
-[; ;./timers.h: 12: unsigned short test_mode;
+"10 ./timers.h
+[; ;./timers.h: 10: unsigned short test_mode;
 [v _test_mode `us ~T0 @X0 1 e ]
 "8 timers.c
-[; ;timers.c: 8: unsigned long time_counter = 0;
-[v _time_counter `ul ~T0 @X0 1 e ]
-[i _time_counter
--> -> -> 0 `i `l `ul
-]
-"9
-[; ;timers.c: 9: unsigned int day_of_the_week = 1;
+[; ;timers.c: 8: unsigned int day_of_the_week = 1;
 [v _day_of_the_week `ui ~T0 @X0 1 e ]
 [i _day_of_the_week
 -> -> 1 `i `ui
 ]
+"9
+[; ;timers.c: 9: unsigned int seconds = 1;
+[v _seconds `ui ~T0 @X0 1 e ]
+[i _seconds
+-> -> 1 `i `ui
+]
 "10
-[; ;timers.c: 10: unsigned int day = 1;
+[; ;timers.c: 10: unsigned int hours = 1;
+[v _hours `ui ~T0 @X0 1 e ]
+[i _hours
+-> -> 1 `i `ui
+]
+"11
+[; ;timers.c: 11: unsigned int minutes = 1;
+[v _minutes `ui ~T0 @X0 1 e ]
+[i _minutes
+-> -> 1 `i `ui
+]
+"12
+[; ;timers.c: 12: unsigned int day = 1;
 [v _day `ui ~T0 @X0 1 e ]
 [i _day
 -> -> 1 `i `ui
 ]
-"11
-[; ;timers.c: 11: unsigned int month = 1;
+"13
+[; ;timers.c: 13: unsigned int month = 1;
 [v _month `ui ~T0 @X0 1 e ]
 [i _month
 -> -> 1 `i `ui
 ]
-"12
-[; ;timers.c: 12: unsigned int time_corrector = 0;
+"14
+[; ;timers.c: 14: unsigned int time_corrector = 0;
 [v _time_corrector `ui ~T0 @X0 1 e ]
 [i _time_corrector
 -> -> 0 `i `ui
 ]
-"13
-[; ;timers.c: 13: unsigned int year = 2020;
+"15
+[; ;timers.c: 15: unsigned int year = 2020;
 [v _year `ui ~T0 @X0 1 e ]
 [i _year
 -> -> 2020 `i `ui
 ]
-"15
-[; ;timers.c: 15: unsigned short test_mode = 0;
+"17
+[; ;timers.c: 17: unsigned short test_mode = 0;
 [v _test_mode `us ~T0 @X0 1 e ]
 [i _test_mode
 -> -> 0 `i `us
 ]
-"17
-[; ;timers.c: 17: void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
+"19
+[; ;timers.c: 19: void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
 [v _Timer0_init `(v ~T0 @X0 1 ef7`us`ul`ul`ui`ui`ui`ui ]
-"18
-[; ;timers.c: 18: {
+"20
+[; ;timers.c: 20: {
 {
 [e :U _Timer0_init ]
-"17
-[; ;timers.c: 17: void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
+"19
+[; ;timers.c: 19: void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
 [v _init_test_mode `us ~T0 @X0 1 r1 ]
 [v _current_minute `ul ~T0 @X0 1 r2 ]
 [v _current_hour `ul ~T0 @X0 1 r3 ]
@@ -2084,286 +2102,332 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _current_day_of_the_week `ui ~T0 @X0 1 r5 ]
 [v _current_month `ui ~T0 @X0 1 r6 ]
 [v _current_year `ui ~T0 @X0 1 r7 ]
-"18
-[; ;timers.c: 18: {
-[f ]
-"19
-[; ;timers.c: 19:     test_mode = init_test_mode;
-[e = _test_mode _init_test_mode ]
 "20
-[; ;timers.c: 20:     time_counter = current_minute * 60 + current_hour * 3600;
-[e = _time_counter + * _current_minute -> -> -> 60 `i `l `ul * _current_hour -> -> -> 3600 `i `l `ul ]
+[; ;timers.c: 20: {
+[f ]
 "21
-[; ;timers.c: 21:     day = current_day;
-[e = _day _current_day ]
+[; ;timers.c: 21:     test_mode = init_test_mode;
+[e = _test_mode _init_test_mode ]
 "22
-[; ;timers.c: 22:     day_of_the_week = current_day_of_the_week;
-[e = _day_of_the_week _current_day_of_the_week ]
+[; ;timers.c: 22:     minutes = current_minute;
+[e = _minutes -> _current_minute `ui ]
 "23
-[; ;timers.c: 23:     month = current_month;
-[e = _month _current_month ]
+[; ;timers.c: 23:     hours = current_hour;
+[e = _hours -> _current_hour `ui ]
 "24
-[; ;timers.c: 24:     year = current_year;
-[e = _year _current_year ]
+[; ;timers.c: 24:     day = current_day;
+[e = _day _current_day ]
+"25
+[; ;timers.c: 25:     day_of_the_week = current_day_of_the_week;
+[e = _day_of_the_week _current_day_of_the_week ]
 "26
-[; ;timers.c: 26:     T0CON1bits.T0CS=0b010;
-[e = . . _T0CON1bits 0 2 -> -> 2 `i `uc ]
+[; ;timers.c: 26:     month = current_month;
+[e = _month _current_month ]
 "27
-[; ;timers.c: 27:     T0CON1bits.T0ASYNC=1;
-[e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
+[; ;timers.c: 27:     year = current_year;
+[e = _year _current_year ]
 "29
-[; ;timers.c: 29:     T0CON0bits.T016BIT=1;
+[; ;timers.c: 29:     T0CON1bits.T0CS=0b010;
+[e = . . _T0CON1bits 0 2 -> -> 2 `i `uc ]
+"30
+[; ;timers.c: 30:     T0CON1bits.T0ASYNC=1;
+[e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
+"32
+[; ;timers.c: 32:     T0CON0bits.T016BIT=1;
 [e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
-"31
-[; ;timers.c: 31:     if(test_mode == 0){
+"34
+[; ;timers.c: 34:     if(test_mode == 0){
 [e $ ! == -> _test_mode `ui -> -> 0 `i `ui 2016  ]
 {
-"33
-[; ;timers.c: 33:         T0CON1bits.T0CKPS=8;
-[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
-"35
-[; ;timers.c: 35:         TMR0H = 0b1011;
-[e = _TMR0H -> -> 11 `i `uc ]
 "36
-[; ;timers.c: 36:         TMR0L = 0b11011011;
+[; ;timers.c: 36:         T0CON1bits.T0CKPS=8;
+[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
+"38
+[; ;timers.c: 38:         TMR0H = 0b1011;
+[e = _TMR0H -> -> 11 `i `uc ]
+"39
+[; ;timers.c: 39:         TMR0L = 0b11011011;
 [e = _TMR0L -> -> 219 `i `uc ]
-"37
-[; ;timers.c: 37:     }else{
+"40
+[; ;timers.c: 40:     }else{
 }
 [e $U 2017  ]
 [e :U 2016 ]
 {
-"38
-[; ;timers.c: 38:         T0CON1bits.T0CKPS=0;
-[e = . . _T0CON1bits 0 0 -> -> 0 `i `uc ]
-"40
-[; ;timers.c: 40:         TMR0H = 0;
-[e = _TMR0H -> -> 0 `i `uc ]
 "41
-[; ;timers.c: 41:         TMR0L = 0;
+[; ;timers.c: 41:         T0CON1bits.T0CKPS=0;
+[e = . . _T0CON1bits 0 0 -> -> 0 `i `uc ]
+"43
+[; ;timers.c: 43:         TMR0H = 0;
+[e = _TMR0H -> -> 0 `i `uc ]
+"44
+[; ;timers.c: 44:         TMR0L = 0;
 [e = _TMR0L -> -> 0 `i `uc ]
-"42
-[; ;timers.c: 42:     }
+"45
+[; ;timers.c: 45:     }
 }
 [e :U 2017 ]
-"43
-[; ;timers.c: 43:     T0CON0bits.T0EN=1;
+"46
+[; ;timers.c: 46:     T0CON0bits.T0EN=1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"44
-[; ;timers.c: 44: }
+"47
+[; ;timers.c: 47: }
 [e :UE 2015 ]
 }
-"50
-[; ;timers.c: 50: unsigned int get16bitTMR0val(void)
+"53
+[; ;timers.c: 53: unsigned int get16bitTMR0val(void)
 [v _get16bitTMR0val `(ui ~T0 @X0 1 ef ]
-"51
-[; ;timers.c: 51: {
+"54
+[; ;timers.c: 54: {
 {
 [e :U _get16bitTMR0val ]
 [f ]
-"52
-[; ;timers.c: 52:     unsigned int low_bits = TMR0L;
+"55
+[; ;timers.c: 55:     unsigned int low_bits = TMR0L;
 [v _low_bits `ui ~T0 @X0 1 a ]
 [e = _low_bits -> _TMR0L `ui ]
-"53
-[; ;timers.c: 53:     unsigned int high_bits = TMR0H<<8;
+"56
+[; ;timers.c: 56:     unsigned int high_bits = TMR0H<<8;
 [v _high_bits `ui ~T0 @X0 1 a ]
 [e = _high_bits -> << -> _TMR0H `i -> 8 `i `ui ]
-"55
-[; ;timers.c: 55:     return(low_bits|high_bits);
+"58
+[; ;timers.c: 58:     return(low_bits|high_bits);
 [e ) | _low_bits _high_bits ]
 [e $UE 2018  ]
-"56
-[; ;timers.c: 56: }
+"59
+[; ;timers.c: 59: }
 [e :UE 2018 ]
 }
-"58
-[; ;timers.c: 58: unsigned long get_time(){
-[v _get_time `(ul ~T0 @X0 1 ef ]
-{
-[e :U _get_time ]
-[f ]
-"60
-[; ;timers.c: 60:     return time_counter;
-[e ) _time_counter ]
-[e $UE 2019  ]
 "61
-[; ;timers.c: 61: }
-[e :UE 2019 ]
-}
-"63
-[; ;timers.c: 63: unsigned int get_seconds(){
+[; ;timers.c: 61: unsigned int get_seconds(){
 [v _get_seconds `(ui ~T0 @X0 1 ef ]
 {
 [e :U _get_seconds ]
 [f ]
+"63
+[; ;timers.c: 63:     return seconds;
+[e ) _seconds ]
+[e $UE 2019  ]
 "64
-[; ;timers.c: 64:     return (unsigned int) time_counter%60;
-[e ) % -> _time_counter `ui -> -> 60 `i `ui ]
-[e $UE 2020  ]
-"65
-[; ;timers.c: 65: }
-[e :UE 2020 ]
+[; ;timers.c: 64: }
+[e :UE 2019 ]
 }
-"67
-[; ;timers.c: 67: unsigned int get_minutes(){
+"66
+[; ;timers.c: 66: unsigned int get_minutes(){
 [v _get_minutes `(ui ~T0 @X0 1 ef ]
 {
 [e :U _get_minutes ]
 [f ]
+"67
+[; ;timers.c: 67:     return minutes;
+[e ) _minutes ]
+[e $UE 2020  ]
 "68
-[; ;timers.c: 68:     return (unsigned int) (time_counter/60) % 60;
-[e ) % -> / _time_counter -> -> -> 60 `i `l `ul `ui -> -> 60 `i `ui ]
+[; ;timers.c: 68: }
+[e :UE 2020 ]
+}
+"70
+[; ;timers.c: 70: unsigned int get_hours(){
+[v _get_hours `(ui ~T0 @X0 1 ef ]
+{
+[e :U _get_hours ]
+[f ]
+"71
+[; ;timers.c: 71:     return hours;
+[e ) _hours ]
 [e $UE 2021  ]
-"69
-[; ;timers.c: 69: }
+"72
+[; ;timers.c: 72: }
 [e :UE 2021 ]
 }
-"71
-[; ;timers.c: 71: unsigned int get_hour(){
-[v _get_hour `(ui ~T0 @X0 1 ef ]
-{
-[e :U _get_hour ]
-[f ]
-"72
-[; ;timers.c: 72:     return (unsigned int) time_counter/3600;
-[e ) / -> _time_counter `ui -> -> 3600 `i `ui ]
-[e $UE 2022  ]
-"73
-[; ;timers.c: 73: }
-[e :UE 2022 ]
-}
-"75
-[; ;timers.c: 75: unsigned int get_day(){
+"74
+[; ;timers.c: 74: unsigned int get_day(){
 [v _get_day `(ui ~T0 @X0 1 ef ]
 {
 [e :U _get_day ]
 [f ]
-"76
-[; ;timers.c: 76:     return day;
+"75
+[; ;timers.c: 75:     return day;
 [e ) _day ]
-[e $UE 2023  ]
-"77
-[; ;timers.c: 77: }
-[e :UE 2023 ]
+[e $UE 2022  ]
+"76
+[; ;timers.c: 76: }
+[e :UE 2022 ]
 }
-"78
-[; ;timers.c: 78: unsigned int get_month(){
+"77
+[; ;timers.c: 77: unsigned int get_month(){
 [v _get_month `(ui ~T0 @X0 1 ef ]
 {
 [e :U _get_month ]
 [f ]
-"79
-[; ;timers.c: 79:     return month;
+"78
+[; ;timers.c: 78:     return month;
 [e ) _month ]
-[e $UE 2024  ]
-"80
-[; ;timers.c: 80: }
-[e :UE 2024 ]
+[e $UE 2023  ]
+"79
+[; ;timers.c: 79: }
+[e :UE 2023 ]
 }
-"83
-[; ;timers.c: 83: void set_time(unsigned long time){
-[v _set_time `(v ~T0 @X0 1 ef1`ul ]
+"81
+[; ;timers.c: 81: void increment_seconds(unsigned int increment){
+[v _increment_seconds `(v ~T0 @X0 1 ef1`ui ]
 {
-[e :U _set_time ]
-[v _time `ul ~T0 @X0 1 r1 ]
+[e :U _increment_seconds ]
+[v _increment `ui ~T0 @X0 1 r1 ]
 [f ]
+"82
+[; ;timers.c: 82:     if(test_mode == 1){
+[e $ ! == -> _test_mode `ui -> -> 1 `i `ui 2025  ]
+{
+"83
+[; ;timers.c: 83:             increment *= 15;
+[e =* _increment -> -> 15 `i `ui ]
 "84
-[; ;timers.c: 84:     time_counter = time;
-[e = _time_counter _time ]
+[; ;timers.c: 84:         }
+}
+[e :U 2025 ]
 "85
-[; ;timers.c: 85:     if(time_counter >= 86401){
-[e $ ! >= _time_counter -> -> 86401 `l `ul 2026  ]
+[; ;timers.c: 85:     while(increment > 0){
+[e $U 2026  ]
+[e :U 2027 ]
 {
 "86
-[; ;timers.c: 86:         time_counter = 0;
-[e = _time_counter -> -> -> 0 `i `l `ul ]
+[; ;timers.c: 86:         seconds += 1;
+[e =+ _seconds -> -> 1 `i `ui ]
 "87
-[; ;timers.c: 87:     }
+[; ;timers.c: 87:         if(seconds == 60){
+[e $ ! == _seconds -> -> 60 `i `ui 2029  ]
+{
+"88
+[; ;timers.c: 88:             seconds = 0;
+[e = _seconds -> -> 0 `i `ui ]
+"89
+[; ;timers.c: 89:             increment_minutes(1);
+[e ( _increment_minutes (1 -> -> 1 `i `ui ]
+"90
+[; ;timers.c: 90:         }
+}
+[e :U 2029 ]
+"91
+[; ;timers.c: 91:     increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"92
+[; ;timers.c: 92:     }
 }
 [e :U 2026 ]
-"88
-[; ;timers.c: 88: }
-[e :UE 2025 ]
-}
-"90
-[; ;timers.c: 90: void increment_time(unsigned long increment){
-[v _increment_time `(v ~T0 @X0 1 ef1`ul ]
-{
-[e :U _increment_time ]
-[v _increment `ul ~T0 @X0 1 r1 ]
-[f ]
-"91
-[; ;timers.c: 91:     while(increment > 0){
-[e $U 2028  ]
-[e :U 2029 ]
-{
-"92
-[; ;timers.c: 92:         if(test_mode == 0){
-[e $ ! == -> _test_mode `ui -> -> 0 `i `ui 2031  ]
-{
-"93
-[; ;timers.c: 93:             time_counter += increment;
-[e =+ _time_counter _increment ]
-"94
-[; ;timers.c: 94:         }else{
-}
-[e $U 2032  ]
-[e :U 2031 ]
-{
-"95
-[; ;timers.c: 95:             time_counter += increment*15;
-[e =+ _time_counter * _increment -> -> -> 15 `i `l `ul ]
-"96
-[; ;timers.c: 96:         }
-}
-[e :U 2032 ]
-"97
-[; ;timers.c: 97:         if(time_counter >= 86400){
-[e $ ! >= _time_counter -> -> 86400 `l `ul 2033  ]
-{
-"98
-[; ;timers.c: 98:             time_counter = 0;
-[e = _time_counter -> -> -> 0 `i `l `ul ]
-"99
-[; ;timers.c: 99:             increment_day(1);
-[e ( _increment_day (1 -> -> 1 `i `ui ]
-"100
-[; ;timers.c: 100:         }
-}
-[e :U 2033 ]
-"101
-[; ;timers.c: 101:     increment -= 1;
-[e =- _increment -> -> -> 1 `i `l `ul ]
-"102
-[; ;timers.c: 102:     }
-}
+"85
+[; ;timers.c: 85:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2027  ]
 [e :U 2028 ]
-"91
-[; ;timers.c: 91:     while(increment > 0){
-[e $ > _increment -> -> -> 0 `i `l `ul 2029  ]
-[e :U 2030 ]
-"103
-[; ;timers.c: 103: }
-[e :UE 2027 ]
+"93
+[; ;timers.c: 93: }
+[e :UE 2024 ]
 }
-"105
-[; ;timers.c: 105: void increment_day(unsigned int increment){
+"95
+[; ;timers.c: 95: void increment_minutes(unsigned int increment){
+[v _increment_minutes `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _increment_minutes ]
+[v _increment `ui ~T0 @X0 1 r1 ]
+[f ]
+"96
+[; ;timers.c: 96:     while(increment > 0){
+[e $U 2031  ]
+[e :U 2032 ]
+{
+"97
+[; ;timers.c: 97:         minutes += 1;
+[e =+ _minutes -> -> 1 `i `ui ]
+"98
+[; ;timers.c: 98:         if(minutes == 60){
+[e $ ! == _minutes -> -> 60 `i `ui 2034  ]
+{
+"99
+[; ;timers.c: 99:             minutes = 0;
+[e = _minutes -> -> 0 `i `ui ]
+"100
+[; ;timers.c: 100:             increment_hours(1);
+[e ( _increment_hours (1 -> -> 1 `i `ui ]
+"101
+[; ;timers.c: 101:         }
+}
+[e :U 2034 ]
+"102
+[; ;timers.c: 102:         increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"103
+[; ;timers.c: 103:     }
+}
+[e :U 2031 ]
+"96
+[; ;timers.c: 96:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2032  ]
+[e :U 2033 ]
+"104
+[; ;timers.c: 104: }
+[e :UE 2030 ]
+}
+"106
+[; ;timers.c: 106: void increment_hours(unsigned int increment){
+[v _increment_hours `(v ~T0 @X0 1 ef1`ui ]
+{
+[e :U _increment_hours ]
+[v _increment `ui ~T0 @X0 1 r1 ]
+[f ]
+"107
+[; ;timers.c: 107:     while(increment > 0){
+[e $U 2036  ]
+[e :U 2037 ]
+{
+"108
+[; ;timers.c: 108:         hours += 1;
+[e =+ _hours -> -> 1 `i `ui ]
+"109
+[; ;timers.c: 109:         if(hours == 24){
+[e $ ! == _hours -> -> 24 `i `ui 2039  ]
+{
+"110
+[; ;timers.c: 110:             hours = 0;
+[e = _hours -> -> 0 `i `ui ]
+"111
+[; ;timers.c: 111:             increment_day(1);
+[e ( _increment_day (1 -> -> 1 `i `ui ]
+"112
+[; ;timers.c: 112:         }
+}
+[e :U 2039 ]
+"113
+[; ;timers.c: 113:         increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"114
+[; ;timers.c: 114:     }
+}
+[e :U 2036 ]
+"107
+[; ;timers.c: 107:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2037  ]
+[e :U 2038 ]
+"115
+[; ;timers.c: 115: }
+[e :UE 2035 ]
+}
+"117
+[; ;timers.c: 117: void increment_day(unsigned int increment){
 [v _increment_day `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _increment_day ]
 [v _increment `ui ~T0 @X0 1 r1 ]
 [f ]
-"106
-[; ;timers.c: 106:     while(increment > 0){
-[e $U 2035  ]
-[e :U 2036 ]
+"118
+[; ;timers.c: 118:     while(increment > 0){
+[e $U 2041  ]
+[e :U 2042 ]
 {
-[v F14261 `ui ~T0 @X0 -> 12 `i s ]
-[i F14261
+[v F14265 `ui ~T0 @X0 -> 12 `i s ]
+[i F14265
 :U ..
-"108
-[; ;timers.c: 108:         unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+"120
+[; ;timers.c: 120:         unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 -> -> 31 `i `ui
 -> -> 28 `i `ui
 -> -> 31 `i `ui
@@ -2379,155 +2443,155 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v _day_in_month `ui ~T0 @X0 -> 12 `i a ]
-[e = _day_in_month F14261 ]
-"109
-[; ;timers.c: 109:         unsigned int curr_day_in_month = day_in_month[month - 1];
+[e = _day_in_month F14265 ]
+"121
+[; ;timers.c: 121:         unsigned int curr_day_in_month = day_in_month[month - 1];
 [v _curr_day_in_month `ui ~T0 @X0 1 a ]
 [e = _curr_day_in_month *U + &U _day_in_month * -> - _month -> -> 1 `i `ui `ux -> -> # *U &U _day_in_month `ui `ux ]
-"110
-[; ;timers.c: 110:         if(month == 2 && (year - 2020)%4 == 0){
-[e $ ! && == _month -> -> 2 `i `ui == % - _year -> -> 2020 `i `ui -> -> 4 `i `ui -> -> 0 `i `ui 2038  ]
-{
-"111
-[; ;timers.c: 111:             curr_day_in_month = 29;
-[e = _curr_day_in_month -> -> 29 `i `ui ]
-"112
-[; ;timers.c: 112:         }
-}
-[e :U 2038 ]
-"114
-[; ;timers.c: 114:         day += 1;
-[e =+ _day -> -> 1 `i `ui ]
-"115
-[; ;timers.c: 115:         day_of_the_week += 1;
-[e =+ _day_of_the_week -> -> 1 `i `ui ]
-"117
-[; ;timers.c: 117:         if(day_of_the_week == 8){
-[e $ ! == _day_of_the_week -> -> 8 `i `ui 2039  ]
-{
-"118
-[; ;timers.c: 118:             day_of_the_week = 1;
-[e = _day_of_the_week -> -> 1 `i `ui ]
-"119
-[; ;timers.c: 119:         }
-}
-[e :U 2039 ]
-"121
-[; ;timers.c: 121:         if(day > curr_day_in_month){
-[e $ ! > _day _curr_day_in_month 2040  ]
-{
 "122
-[; ;timers.c: 122:             increment_month(1);
-[e ( _increment_month (1 -> -> 1 `i `ui ]
+[; ;timers.c: 122:         if(month == 2 && (year - 2020)%4 == 0){
+[e $ ! && == _month -> -> 2 `i `ui == % - _year -> -> 2020 `i `ui -> -> 4 `i `ui -> -> 0 `i `ui 2044  ]
+{
 "123
-[; ;timers.c: 123:             day = 1;
-[e = _day -> -> 1 `i `ui ]
+[; ;timers.c: 123:             curr_day_in_month = 29;
+[e = _curr_day_in_month -> -> 29 `i `ui ]
 "124
 [; ;timers.c: 124:         }
 }
-[e :U 2040 ]
+[e :U 2044 ]
 "126
-[; ;timers.c: 126:         increment -= 1;
-[e =- _increment -> -> 1 `i `ui ]
+[; ;timers.c: 126:         day += 1;
+[e =+ _day -> -> 1 `i `ui ]
 "127
-[; ;timers.c: 127:     }
-}
-[e :U 2035 ]
-"106
-[; ;timers.c: 106:     while(increment > 0){
-[e $ > _increment -> -> 0 `i `ui 2036  ]
-[e :U 2037 ]
-"128
-[; ;timers.c: 128: }
-[e :UE 2034 ]
-}
+[; ;timers.c: 127:         day_of_the_week += 1;
+[e =+ _day_of_the_week -> -> 1 `i `ui ]
+"129
+[; ;timers.c: 129:         if(day_of_the_week == 8){
+[e $ ! == _day_of_the_week -> -> 8 `i `ui 2045  ]
+{
 "130
-[; ;timers.c: 130: unsigned int check_for_hour_shift(){
+[; ;timers.c: 130:             day_of_the_week = 1;
+[e = _day_of_the_week -> -> 1 `i `ui ]
+"131
+[; ;timers.c: 131:         }
+}
+[e :U 2045 ]
+"133
+[; ;timers.c: 133:         if(day > curr_day_in_month){
+[e $ ! > _day _curr_day_in_month 2046  ]
+{
+"134
+[; ;timers.c: 134:             increment_month(1);
+[e ( _increment_month (1 -> -> 1 `i `ui ]
+"135
+[; ;timers.c: 135:             day = 1;
+[e = _day -> -> 1 `i `ui ]
+"136
+[; ;timers.c: 136:         }
+}
+[e :U 2046 ]
+"138
+[; ;timers.c: 138:         increment -= 1;
+[e =- _increment -> -> 1 `i `ui ]
+"139
+[; ;timers.c: 139:     }
+}
+[e :U 2041 ]
+"118
+[; ;timers.c: 118:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2042  ]
+[e :U 2043 ]
+"140
+[; ;timers.c: 140: }
+[e :UE 2040 ]
+}
+"142
+[; ;timers.c: 142: unsigned int check_for_hour_shift(){
 [v _check_for_hour_shift `(ui ~T0 @X0 1 ef ]
 {
 [e :U _check_for_hour_shift ]
 [f ]
-"131
-[; ;timers.c: 131:     if(day_of_the_week != 7){
-[e $ ! != _day_of_the_week -> -> 7 `i `ui 2042  ]
-{
-"132
-[; ;timers.c: 132:         return 0;
-[e ) -> -> 0 `i `ui ]
-[e $UE 2041  ]
-"133
-[; ;timers.c: 133:     }
-}
-[e :U 2042 ]
-"134
-[; ;timers.c: 134:     if(month == 3 && day + 7 <= 31){
-[e $ ! && == _month -> -> 3 `i `ui <= + _day -> -> 7 `i `ui -> -> 31 `i `ui 2043  ]
-{
-"135
-[; ;timers.c: 135:         return 1;
-[e ) -> -> 1 `i `ui ]
-[e $UE 2041  ]
-"136
-[; ;timers.c: 136:     }
-}
-[e :U 2043 ]
-"137
-[; ;timers.c: 137:     if(month == 10 && day + 7 <= 31){
-[e $ ! && == _month -> -> 10 `i `ui <= + _day -> -> 7 `i `ui -> -> 31 `i `ui 2044  ]
-{
-"138
-[; ;timers.c: 138:         return -1;
-[e ) -> -U -> 1 `i `ui ]
-[e $UE 2041  ]
-"139
-[; ;timers.c: 139:     }
-}
-[e :U 2044 ]
-"140
-[; ;timers.c: 140: }
-[e :UE 2041 ]
-}
 "143
-[; ;timers.c: 143: void increment_month(unsigned int increment){
+[; ;timers.c: 143:     if(day_of_the_week != 7){
+[e $ ! != _day_of_the_week -> -> 7 `i `ui 2048  ]
+{
+"144
+[; ;timers.c: 144:         return 0;
+[e ) -> -> 0 `i `ui ]
+[e $UE 2047  ]
+"145
+[; ;timers.c: 145:     }
+}
+[e :U 2048 ]
+"146
+[; ;timers.c: 146:     if(month == 3 && day + 7 <= 31){
+[e $ ! && == _month -> -> 3 `i `ui <= + _day -> -> 7 `i `ui -> -> 31 `i `ui 2049  ]
+{
+"147
+[; ;timers.c: 147:         return 1;
+[e ) -> -> 1 `i `ui ]
+[e $UE 2047  ]
+"148
+[; ;timers.c: 148:     }
+}
+[e :U 2049 ]
+"149
+[; ;timers.c: 149:     if(month == 10 && day + 7 <= 31){
+[e $ ! && == _month -> -> 10 `i `ui <= + _day -> -> 7 `i `ui -> -> 31 `i `ui 2050  ]
+{
+"150
+[; ;timers.c: 150:         return -1;
+[e ) -> -U -> 1 `i `ui ]
+[e $UE 2047  ]
+"151
+[; ;timers.c: 151:     }
+}
+[e :U 2050 ]
+"152
+[; ;timers.c: 152: }
+[e :UE 2047 ]
+}
+"155
+[; ;timers.c: 155: void increment_month(unsigned int increment){
 [v _increment_month `(v ~T0 @X0 1 ef1`ui ]
 {
 [e :U _increment_month ]
 [v _increment `ui ~T0 @X0 1 r1 ]
 [f ]
-"144
-[; ;timers.c: 144:     while(increment > 0){
-[e $U 2046  ]
-[e :U 2047 ]
+"156
+[; ;timers.c: 156:     while(increment > 0){
+[e $U 2052  ]
+[e :U 2053 ]
 {
-"146
-[; ;timers.c: 146:         month += 1;
+"158
+[; ;timers.c: 158:         month += 1;
 [e =+ _month -> -> 1 `i `ui ]
-"147
-[; ;timers.c: 147:         if(month > 12){
-[e $ ! > _month -> -> 12 `i `ui 2049  ]
+"159
+[; ;timers.c: 159:         if(month > 12){
+[e $ ! > _month -> -> 12 `i `ui 2055  ]
 {
-"148
-[; ;timers.c: 148:             month = 1;
+"160
+[; ;timers.c: 160:             month = 1;
 [e = _month -> -> 1 `i `ui ]
-"149
-[; ;timers.c: 149:             year += 1;
+"161
+[; ;timers.c: 161:             year += 1;
 [e =+ _year -> -> 1 `i `ui ]
-"150
-[; ;timers.c: 150:         }
+"162
+[; ;timers.c: 162:         }
 }
-[e :U 2049 ]
-"151
-[; ;timers.c: 151:         increment -= 1;
+[e :U 2055 ]
+"163
+[; ;timers.c: 163:         increment -= 1;
 [e =- _increment -> -> 1 `i `ui ]
-"153
-[; ;timers.c: 153:     }
+"165
+[; ;timers.c: 165:     }
 }
-[e :U 2046 ]
-"144
-[; ;timers.c: 144:     while(increment > 0){
-[e $ > _increment -> -> 0 `i `ui 2047  ]
-[e :U 2048 ]
-"154
-[; ;timers.c: 154: }
-[e :UE 2045 ]
+[e :U 2052 ]
+"156
+[; ;timers.c: 156:     while(increment > 0){
+[e $ > _increment -> -> 0 `i `ui 2053  ]
+[e :U 2054 ]
+"166
+[; ;timers.c: 166: }
+[e :UE 2051 ]
 }

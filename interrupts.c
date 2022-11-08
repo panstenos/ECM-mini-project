@@ -30,7 +30,7 @@ void __interrupt(high_priority) HighISR()
 	}
     if(PIR0bits.TMR0IF){ // Timer overflow flag
         
-        increment_time(1);
+        increment_seconds(1);
         
         if(test_mode == 0){
             TMR0H = 0b1011;

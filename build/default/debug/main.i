@@ -24288,17 +24288,17 @@ void Comp1_init(void);
 
 void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
-unsigned long get_time(void);
-void set_time(unsigned long);
 unsigned short test_mode;
 
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
-unsigned int get_hour(void);
+unsigned int get_hours(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
-void increment_time(unsigned long);
+void increment_seconds(unsigned int);
+void increment_minutes(unsigned int);
+void increment_hours(unsigned int);
 void increment_day(unsigned int);
 void increment_month(unsigned int);
 # 12 "main.c" 2
@@ -24349,31 +24349,18 @@ void main(void) {
     unsigned int curr_day;
     unsigned int curr_month;
     char *buf;
+    char *buf1;
+    char *buf2;
 
     while (1) {
-        float curr_hour = get_hour();
-        LEDarray_disp_bin((unsigned int) curr_hour);
+        unsigned int day = get_day();
+        unsigned int month = get_month();
 
-        if(curr_hour >= 1 && curr_hour <= 5){
-            LATHbits.LATH3 = 0;
-        }else{
-            LATHbits.LATH3 = 1;
-        }
+        increment_day(1);
 
-        unsigned int test = ADC_getval();
-        test += 1;
-
-        ADC2String(*buf,ADC_getval());
-
-
-
-
-
-        char *text[8] = {"MON", "30","10","2022","23","25","58",*buf};
-
-        LCD_sendstring(text);
-
-
-
+        day += 1;
+        day -= 1;
+        month += 1;
+# 79 "main.c"
     }
 }

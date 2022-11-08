@@ -24240,7 +24240,7 @@ void LCD_setline (char line);
 void LCD_sendstring(char *strlst[8]);
 void LCD_scroll(int);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
+void ADC2String(char *buf, unsigned int,int);
 # 3 "LCD.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
@@ -24555,9 +24555,42 @@ void LCD_scroll(int max)
 
 
 
-void ADC2String(char *buf, unsigned int ADC_val){
-# 181 "LCD.c"
-    sprintf(buf, "%d",ADC_val);
+void ADC2String(char *buf, unsigned int ADC_val,int number){
+    if(number == 1){
+        sprintf(buf, "%d",ADC_val);
+
+    }else if(number == 2){
+        sprintf(buf, "%02d",ADC_val);
+    }else if(number == 3){
+        sprintf(buf, "%03d",ADC_val);
+    }else{
+        sprintf(buf, "%04d",ADC_val);
+    }
+
+}
+
+void display_informations(unsigned int time[],unsigned int adc_val){
+    char *seconds;
+    char *minutes;
+    char *hours;
+    char *day;
+    char *month;
+    char *year;
+
+    char *adcval;
+
+    ADC2String(*seconds,time[0],2);
+    ADC2String(*minutes,time[1],2);
+    ADC2String(*hours,time[2],2);
+    ADC2String(*day,time[4],2);
+    ADC2String(*month,time[5],2);
+    ADC2String(*year,time[6],4);
+
+    ADC2String(*adcval,adc_val,3);
+
+
+
+    LCD_sendstring({time[3],*day,*month,*year,*hours,*minutes,*seconds,*adcval});
 
 
 }

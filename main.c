@@ -43,13 +43,10 @@ void main(void) {
 
     unsigned int curr_day;
     unsigned int curr_month;
-    char *buf;
-    char *buf1;
-    char *buf2;
 
     while (1) {
-        float curr_hour = get_hour();
-        LEDarray_disp_bin((unsigned int) curr_hour);
+        unsigned int curr_hour = get_hours();
+        LEDarray_disp_bin(curr_hour);
         
         if(curr_hour >= 1 && curr_hour <= 5){
             LATHbits.LATH3 = 0;
@@ -57,15 +54,8 @@ void main(void) {
             LATHbits.LATH3 = 1;
         }
         
-        ADC2String(*buf,ADC_getval()); // Convert integer to string
-
-        ADC2String(*buf,get_seconds());
-        ADC2String(*buf1,get_minutes());
-        ADC2String(*buf2,get_hour());
         
-        char *text[8] = {"MON", "30","10","2022",*buf2,*buf1,*buf,"123"};
-        
-        LCD_sendstring(text);
+        display_informations(ADC_getval());
         
         
         __delay_ms(100);

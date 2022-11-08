@@ -24288,17 +24288,17 @@ void Comp1_init(void);
 
 void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
-unsigned long get_time(void);
-void set_time(unsigned long);
 unsigned short test_mode;
 
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
-unsigned int get_hour(void);
+unsigned int get_hours(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
-void increment_time(unsigned long);
+void increment_seconds(unsigned int);
+void increment_minutes(unsigned int);
+void increment_hours(unsigned int);
 void increment_day(unsigned int);
 void increment_month(unsigned int);
 # 12 "main.c" 2
@@ -24325,7 +24325,7 @@ void LCD_setline (char line);
 void LCD_sendstring(char *strlst[8]);
 void LCD_scroll(int);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
+void ADC2String(char *buf, unsigned int,int);
 # 14 "main.c" 2
 # 26 "main.c"
 void main(void) {
@@ -24348,13 +24348,10 @@ void main(void) {
 
     unsigned int curr_day;
     unsigned int curr_month;
-    char *buf;
-    char *buf1;
-    char *buf2;
 
     while (1) {
-        float curr_hour = get_hour();
-        LEDarray_disp_bin((unsigned int) curr_hour);
+        unsigned int curr_hour = get_hours();
+        LEDarray_disp_bin(curr_hour);
 
         if(curr_hour >= 1 && curr_hour <= 5){
             LATHbits.LATH3 = 0;
@@ -24362,15 +24359,8 @@ void main(void) {
             LATHbits.LATH3 = 1;
         }
 
-        ADC2String(*buf,ADC_getval());
 
-        ADC2String(*buf,get_seconds());
-        ADC2String(*buf1,get_minutes());
-        ADC2String(*buf2,get_hour());
-
-        char *text[8] = {"MON", "30","10","2022",*buf2,*buf1,*buf,"123"};
-
-        LCD_sendstring(text);
+        display_informations(get_time(),ADC_getval());
 
 
         _delay((unsigned long)((100)*(64000000/4000.0)));

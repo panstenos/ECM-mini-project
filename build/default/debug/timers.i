@@ -24241,17 +24241,17 @@ unsigned char __t3rd16on(void);
 
 void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
 unsigned int get16bitTMR0val(void);
-unsigned long get_time(void);
-void set_time(unsigned long);
 unsigned short test_mode;
 
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
-unsigned int get_hour(void);
+unsigned int get_hours(void);
 unsigned int get_day(void);
 unsigned int get_month(void);
 
-void increment_time(unsigned long);
+void increment_seconds(unsigned int);
+void increment_minutes(unsigned int);
+void increment_hours(unsigned int);
 void increment_day(unsigned int);
 void increment_month(unsigned int);
 # 2 "timers.c" 2
@@ -24261,8 +24261,10 @@ void increment_month(unsigned int);
 
 
 
-unsigned long time_counter = 0;
 unsigned int day_of_the_week = 1;
+unsigned int seconds = 1;
+unsigned int hours = 1;
+unsigned int minutes = 1;
 unsigned int day = 1;
 unsigned int month = 1;
 unsigned int time_corrector = 0;
@@ -24273,7 +24275,8 @@ unsigned short test_mode = 0;
 void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
 {
     test_mode = init_test_mode;
-    time_counter = current_minute * 60 + current_hour * 3600;
+    minutes = current_minute;
+    hours = current_hour;
     day = current_day;
     day_of_the_week = current_day_of_the_week;
     month = current_month;
@@ -24311,21 +24314,17 @@ unsigned int get16bitTMR0val(void)
     return(low_bits|high_bits);
 }
 
-unsigned long get_time(){
-
-    return time_counter;
-}
-
 unsigned int get_seconds(){
-    return (unsigned int) time_counter%60;
+
+    return seconds;
 }
 
 unsigned int get_minutes(){
-    return (unsigned int) (time_counter/60) % 60;
+    return minutes;
 }
 
-unsigned int get_hour(){
-    return (unsigned int) time_counter/3600;
+unsigned int get_hours(){
+    return hours;
 }
 
 unsigned int get_day(){
@@ -24335,26 +24334,39 @@ unsigned int get_month(){
     return month;
 }
 
-
-void set_time(unsigned long time){
-    time_counter = time;
-    if(time_counter >= 86401){
-        time_counter = 0;
+void increment_seconds(unsigned int increment){
+    if(test_mode == 1){
+            increment *= 15;
+        }
+    while(increment > 0){
+        seconds += 1;
+        if(seconds == 60){
+            seconds = 0;
+            increment_minutes(1);
+        }
+    increment -= 1;
     }
 }
 
-void increment_time(unsigned long increment){
+void increment_minutes(unsigned int increment){
     while(increment > 0){
-        if(test_mode == 0){
-            time_counter += increment;
-        }else{
-            time_counter += increment*15;
+        minutes += 1;
+        if(minutes == 60){
+            minutes = 0;
+            increment_hours(1);
         }
-        if(time_counter >= 86400){
-            time_counter = 0;
+        increment -= 1;
+    }
+}
+
+void increment_hours(unsigned int increment){
+    while(increment > 0){
+        hours += 1;
+        if(hours == 24){
+            hours = 0;
             increment_day(1);
         }
-    increment -= 1;
+        increment -= 1;
     }
 }
 

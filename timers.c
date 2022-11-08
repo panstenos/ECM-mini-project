@@ -5,19 +5,24 @@
  * Function to set up timer 0
 ************************************/
 
-unsigned long time_counter = 0;
 unsigned int day_of_the_week = 1;
-unsigned int day = 1;
-unsigned int month = 1;
-unsigned int time_corrector = 0;
-unsigned int year = 2020;
+unsigned int *seconds = 1;
+unsigned int *hours = 1;
+unsigned int *minutes = 1;
+unsigned int *day = 1;
+unsigned int *month = 1;
+unsigned int *year = 2020;
+
+unsigned char day_names[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
+
 
 unsigned short test_mode = 0;
 
 void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
 {
     test_mode = init_test_mode; //Set the test_mode value
-    time_counter = current_minute * 60 + current_hour * 3600;
+    minutes = current_minute;
+    hours = current_hour;
     day = current_day;
     day_of_the_week = current_day_of_the_week;
     month = current_month;
@@ -55,21 +60,17 @@ unsigned int get16bitTMR0val(void)
     return(low_bits|high_bits);
 }
 
-unsigned long get_time(){
-    //Get the current time in seconds
-    return time_counter;
-}
-
 unsigned int get_seconds(){
-    return (unsigned int) time_counter%60;
+    //Get the current time in seconds
+    return seconds;
 }
 
 unsigned int get_minutes(){
-    return (unsigned int) (time_counter/60) % 60;
+    return minutes;
 }
 
-unsigned int get_hour(){
-    return (unsigned int) time_counter/3600;
+unsigned int get_hours(){
+    return hours;
 }
 
 unsigned int get_day(){
@@ -79,26 +80,44 @@ unsigned int get_month(){
     return month;
 }
 
+unsigned int * get_time(){
+    unsigned int  r[7] = {seconds, minutes, hours, day, day_of_the_week,month,year};
+    return r;
+}
 
-void set_time(unsigned long time){ //Set time in seconds
-    time_counter = time;
-    if(time_counter >= 86401){ //Reset time counter after 1 day
-        time_counter = 0;
+void increment_seconds(unsigned int increment){ //increment time in seconds
+    if(test_mode == 1){
+            increment *= 15;
+        }
+    while(increment > 0){
+        seconds += 1;
+        if(seconds == 60){ //Reset time counter after 1 day
+            seconds = 0;
+            increment_minutes(1);
+        }
+    increment -= 1;
     }
 }
 
-void increment_time(unsigned long increment){ //increment time in seconds
+void increment_minutes(unsigned int increment){
     while(increment > 0){
-        if(test_mode == 0){
-            time_counter += increment;
-        }else{
-            time_counter += increment*15;
+        minutes += 1;
+        if(minutes == 60){
+            minutes = 0;
+            increment_hours(1);
         }
-        if(time_counter >= 86400){ //Reset time counter after 1 day
-            time_counter = 0;
+        increment -= 1;
+    }
+}
+
+void increment_hours(unsigned int increment){
+    while(increment > 0){
+        hours += 1;
+        if(hours == 24){
+            hours = 0;
             increment_day(1);
         }
-    increment -= 1;
+        increment -= 1;
     }
 }
 
@@ -127,7 +146,7 @@ void increment_day(unsigned int increment){ //Increment the current day
     } 
 }
 
-unsigned int check_for_hour_shift(){
+int check_for_hour_shift(){
     if(day_of_the_week != 7){
         return 0;
     }
