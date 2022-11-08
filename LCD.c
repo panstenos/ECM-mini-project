@@ -109,7 +109,7 @@ void LCD_clear(void)
 /************************************
  * Function to set the cursor to beginning of line 1 or 2
 ************************************/
-void LCD_setline(char line)
+void LCD_setline(int line)
 {
     if(line == 0){
         LCD_sendbyte(0x80,0);   //Set cursor for day of week
@@ -142,10 +142,27 @@ void LCD_sendstring(char *strlst[8]) //input two strings
             while(*strlst[i] !=0){ //write all the characters of each element
                 LCD_sendbyte(*strlst[i]++,1);
                 }
-        
+            
+            LCD_sendbyte (0xC2,0);
+            LCD_sendbyte (0b00111010,1); // :
+            LCD_sendbyte (0xC5,0);
+            LCD_sendbyte (0b00101110,1); // .
+            LCD_sendbyte (0xC8,0);
+            LCD_sendbyte (0b00100000,1); //
+            LCD_sendbyte (0xC9,0);
+            LCD_sendbyte (0b00100000,1); //
+            LCD_sendbyte (0xCA,0);
+            LCD_sendbyte (0b00100000,1); //
+            LCD_sendbyte (0xCB,0);
+            LCD_sendbyte (0b00100000,1); //
+            LCD_sendbyte (0xCC,0);
+            LCD_sendbyte (0b00100000,1); //
+            LCD_sendbyte (0x88,0);
+            LCD_sendbyte (0b00101111,1); // /
+            LCD_sendbyte (0x8B,0);
+            LCD_sendbyte (0b00101111,1); // /
     }
- 
-
+    
 } 
 
 /************************************
@@ -185,3 +202,4 @@ void ADC2String(char *buf, unsigned int x, unsigned int leading_zeros){
     }else{sprintf(buf, "%03u",x); //convert integer to float; leading zero at x < 1000
     }
 }
+
