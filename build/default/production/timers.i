@@ -24239,21 +24239,19 @@ unsigned char __t3rd16on(void);
 
 
 
-void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
+void Timer0_init(void);
 unsigned int get16bitTMR0val(void);
-unsigned short test_mode;
-
+void increment_seconds(void);
+unsigned int check_for_hour_shift(void);
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
 unsigned int get_hours(void);
 unsigned int get_day(void);
+const char * get_week_day(void);
 unsigned int get_month(void);
+unsigned int get_year(void);
 
-void increment_seconds(unsigned int);
-void increment_minutes(unsigned int);
-void increment_hours(unsigned int);
-void increment_day(unsigned int);
-void increment_month(unsigned int);
+int test_mode;
 # 2 "timers.c" 2
 
 
@@ -24261,46 +24259,32 @@ void increment_month(unsigned int);
 
 
 
-unsigned int day_of_the_week = 1;
-unsigned int seconds = 1;
-unsigned int hours = 1;
-unsigned int minutes = 1;
-unsigned int day = 1;
-unsigned int month = 1;
-unsigned int year = 2020;
-
-unsigned char day_names[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
-
-
-unsigned short test_mode = 0;
-
-void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsigned long current_hour, unsigned int current_day,unsigned int current_day_of_the_week,unsigned int current_month, unsigned int current_year)
+int test_mode = 1;
+int seconds = 0;
+int minutes = 0;
+int hours = 0;
+int day = 1;
+int week_day = 2;
+int month = 0;
+int year = 2020;
+int month_days[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+void Timer0_init(void)
 {
-    test_mode = init_test_mode;
-    minutes = current_minute;
-    hours = current_hour;
-    day = current_day;
-    day_of_the_week = current_day_of_the_week;
-    month = current_month;
-    year = current_year;
-
     T0CON1bits.T0CS=0b010;
     T0CON1bits.T0ASYNC=1;
-
-    T0CON0bits.T016BIT=1;
-
     if(test_mode == 0){
-
-        T0CON1bits.T0CKPS=8;
-
-        TMR0H = 0b1011;
-        TMR0L = 0b11011011;
+        T0CON1bits.T0CKPS=0b1000;
+        TMR0H=0b00001011;
+        TMR0L=0b11011011;
     }else{
         T0CON1bits.T0CKPS=0;
-
-        TMR0H = 0;
-        TMR0L = 0;
+        TMR0H=0b00000000;
+        TMR0L=0b00000000;
     }
+    T0CON0bits.T016BIT=1;
+
+
+
     T0CON0bits.T0EN=1;
 }
 
@@ -24310,120 +24294,84 @@ void Timer0_init(unsigned short init_test_mode,unsigned long current_minute,unsi
 
 unsigned int get16bitTMR0val(void)
 {
-    unsigned int low_bits = TMR0L;
-    unsigned int high_bits = TMR0H<<8;
+ return TMR0L | (TMR0H << 8);
+}
 
-    return(low_bits|high_bits);
+void increment_seconds(){
+    if(test_mode == 0){
+    seconds += 1 ;
+    }else{
+        minutes += 15;
+    }
+    if (seconds == 60){
+        seconds = 0;
+        minutes ++ ;
+    }
+    if (minutes == 60){
+        minutes = 0;
+        hours ++ ;
+    }
+    if (hours == 24){
+        hours = 0;
+        day ++ ;
+        week_day ++;
+    }
+    if (week_day == 7){
+        week_day = 0;
+    }
+    if (month == 1 && year%4 == 0){
+        if (day == 30)
+        {
+            day = 1;
+            month += 1;
+        }
+    }else if(day == month_days[month+1]+1)
+    {
+        day = 1;
+        month += 1;
+    }
+
+    if (month == 12)
+    {
+        month = 0;
+        year += 1;
+    }
+
 }
 
 unsigned int get_seconds(){
-
     return seconds;
 }
-
 unsigned int get_minutes(){
     return minutes;
 }
-
 unsigned int get_hours(){
     return hours;
 }
-
 unsigned int get_day(){
     return day;
+}
+const char * get_week_day(){
+    if(week_day == 0){
+        return("MON");
+    }else if(week_day == 1){
+        return("TUE");
+    }else if(week_day == 2){
+        return("WED");
+    }else if(week_day == 3){
+        return("THU");
+    }else if(week_day == 4){
+        return("FRI");
+    }else if(week_day == 5){
+        return("SAT");
+    }else if(week_day == 6){
+        return("SUN");
+    }
+
 }
 unsigned int get_month(){
     return month;
 }
-
-unsigned int * get_time(){
-    unsigned int r[7] = {seconds, minutes, hours, day, day_of_the_week,month,year};
-    return r;
-}
-
-void increment_seconds(unsigned int increment){
-    if(test_mode == 1){
-            increment *= 15;
-        }
-    while(increment > 0){
-        seconds += 1;
-        if(seconds == 60){
-            seconds = 0;
-            increment_minutes(1);
-        }
-    increment -= 1;
-    }
-}
-
-void increment_minutes(unsigned int increment){
-    while(increment > 0){
-        minutes += 1;
-        if(minutes == 60){
-            minutes = 0;
-            increment_hours(1);
-        }
-        increment -= 1;
-    }
-}
-
-void increment_hours(unsigned int increment){
-    while(increment > 0){
-        hours += 1;
-        if(hours == 24){
-            hours = 0;
-            increment_day(1);
-        }
-        increment -= 1;
-    }
-}
-
-void increment_day(unsigned int increment){
-    while(increment > 0){
-
-        unsigned int day_in_month[] = {31,28,31,30,31,30,31,31,30,31,30,31};
-        unsigned int curr_day_in_month = day_in_month[month - 1];
-        if(month == 2 && (year - 2020)%4 == 0){
-            curr_day_in_month = 29;
-        }
-
-        day += 1;
-        day_of_the_week += 1;
-
-        if(day_of_the_week == 8){
-            day_of_the_week = 1;
-        }
-
-        if(day > curr_day_in_month){
-            increment_month(1);
-            day = 1;
-        }
-
-        increment -= 1;
-    }
-}
-
-int check_for_hour_shift(){
-    if(day_of_the_week != 7){
-        return 0;
-    }
-    if(month == 3 && day + 7 <= 31){
-        return 1;
-    }
-    if(month == 10 && day + 7 <= 31){
-        return -1;
-    }
-}
-
-
-void increment_month(unsigned int increment){
-    while(increment > 0){
-
-        month += 1;
-        if(month > 12){
-            month = 1;
-            year += 1;
-        }
-        increment -= 1;
-
-    }
+unsigned int get_year(){
+    return year;
 }

@@ -24251,22 +24251,21 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
+void Timer0_init(void);
 unsigned int get16bitTMR0val(void);
-unsigned short test_mode;
-
+void increment_seconds(void);
+unsigned int check_for_hour_shift(void);
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
 unsigned int get_hours(void);
 unsigned int get_day(void);
+const char * get_week_day(void);
 unsigned int get_month(void);
+unsigned int get_year(void);
 
-void increment_seconds(unsigned int);
-void increment_minutes(unsigned int);
-void increment_hours(unsigned int);
-void increment_day(unsigned int);
-void increment_month(unsigned int);
+int test_mode;
 # 3 "interrupts.c" 2
+
 
 
 
@@ -24275,14 +24274,10 @@ void increment_month(unsigned int);
 
 void Interrupts_init(void)
 {
-
-
+    INTCONbits.PEIE = 1;
+    PIE0bits.TMR0IE = 1;
     PIE2bits.C1IE = 1;
-    INTCONbits.IPEN = 1;
-    INTCONbits.GIEL=1;
-    IPR2bits.C1IP=1;
-    PIE0bits.TMR0IE=1;
-    INTCONbits.GIEH=1;
+    INTCONbits.GIE = 1;
 }
 
 
@@ -24291,23 +24286,16 @@ void Interrupts_init(void)
 
 void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
- if(PIR2bits.C1IF){
-        LATDbits.LATD7 = !LATDbits.LATD7;
-        PIR2bits.C1IF=0;
- }
-    if(PIR0bits.TMR0IF){
-
-        increment_seconds(1);
-
-        if(test_mode == 0){
-            TMR0H = 0b1011;
-            TMR0L = 0b11011011;
-        }else{
-            TMR0H = 0;
-            TMR0L = 0;
-        }
-
-        PIR0bits.TMR0IF = 0;
+    if(PIR0bits.TMR0IF == 1){
+        LATHbits.LATH3 = !LATHbits.LATH3;
+increment_seconds();
+    if(test_mode == 0){
+            TMR0H=0b00001011;
+            TMR0L=0b11011011;
+    }else{
+            TMR0H=0;
+            TMR0L=0;
     }
-
+        PIR0bits.TMR0IF = 0;
+ }
 }

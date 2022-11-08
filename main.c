@@ -34,18 +34,7 @@ void main(void) {
     char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
     while (1) {
         LCD_clear();
-        //get(*Sec,*Min,*Hou,*Day,*Week_day,*Mon,*Yea);
-        //ADC2String(*Sec2, Sec, 2);
-        //ADC2String(*Min2, Min, 2);
-        //ADC2String(*Hou2, Hou, 2);
-        //ADC2String(*Day2, Mon, 2);
-        //ADC2String(*Mon2, Mon, 2);
-        //ADC2String(*Yea2, Yea, 4);
-        //ADC2String(*ADC, ADC_getval(),3);
-        //char *day_name = day_of_the_week[Week_day];
-        //char *lst[9] = {"day_name","Day2","Mon2","Yea2","Hou2","Min2","Sec2","ADC"};
-        //ADC2String(*Sec2, seconds, 2);
-        //char str[2];
+        
         ADC2String(Sec, get_seconds(), 2);
         ADC2String(Min, get_minutes(), 2);
         ADC2String(Hou, get_hours(), 2);

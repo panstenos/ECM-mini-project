@@ -24229,19 +24229,21 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 2 "LCD.c" 2
+# 1 "LCD.c" 2
+
 # 1 "./LCD.h" 1
 # 17 "./LCD.h"
 void LCD_E_TOG(void);
 void LCD_sendnibble(unsigned char number);
 void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_Init(void);
-void LCD_setline (char line);
+void LCD_setline (int line);
 void LCD_sendstring(char *strlst[8]);
 void LCD_scroll(int);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
-# 3 "LCD.c" 2
+void ADC2String(char *buf, unsigned int number, unsigned int x);
+# 2 "LCD.c" 2
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.40\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24386,7 +24388,8 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 4 "LCD.c" 2
+# 3 "LCD.c" 2
+
 
 
 
@@ -24495,7 +24498,7 @@ void LCD_clear(void)
 
 
 
-void LCD_setline (char line)
+void LCD_setline(int line)
 {
     if(line == 0){
         LCD_sendbyte(0x80,0);
@@ -24519,14 +24522,36 @@ void LCD_setline (char line)
 
 
 
+
 void LCD_sendstring(char *strlst[8])
-{
-        for (int i=0;i<8;i++){
-        LCD_setline(i);
+{ int i;
+        for (i=0;i<8;i++){
+            LCD_setline(i);
+
             while(*strlst[i] !=0){
                 LCD_sendbyte(*strlst[i]++,1);
-            }
+                }
+
+            LCD_sendbyte (0xC2,0);
+            LCD_sendbyte (0b00111010,1);
+            LCD_sendbyte (0xC5,0);
+            LCD_sendbyte (0b00101110,1);
+            LCD_sendbyte (0xC8,0);
+            LCD_sendbyte (0b00100000,1);
+            LCD_sendbyte (0xC9,0);
+            LCD_sendbyte (0b00100000,1);
+            LCD_sendbyte (0xCA,0);
+            LCD_sendbyte (0b00100000,1);
+            LCD_sendbyte (0xCB,0);
+            LCD_sendbyte (0b00100000,1);
+            LCD_sendbyte (0xCC,0);
+            LCD_sendbyte (0b00100000,1);
+            LCD_sendbyte (0x88,0);
+            LCD_sendbyte (0b00101111,1);
+            LCD_sendbyte (0x8B,0);
+            LCD_sendbyte (0b00101111,1);
     }
+
 }
 
 
@@ -24555,9 +24580,14 @@ void LCD_scroll(int max)
 
 
 
-void ADC2String(char *buf, unsigned int ADC_val){
-# 181 "LCD.c"
-    sprintf(buf, "%d",ADC_val);
+void ADC2String(char *buf, unsigned int x, unsigned int leading_zeros){
 
-
+    if(leading_zeros == 0){
+    sprintf(buf, "%u",x);
+    }else if(leading_zeros == 1){
+    sprintf(buf, "%01u",x);
+    }else if(leading_zeros == 2){
+    sprintf(buf, "%02u",x);
+    }else{sprintf(buf, "%03u",x);
+    }
 }

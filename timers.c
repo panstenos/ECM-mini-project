@@ -13,8 +13,7 @@ int day = 1;
 int week_day = 2;
 int month = 0;
 int year = 2020;
-int month_days[12] = {31,28,31,30,31,31,30,31,30,31,30,31};
-char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
+int month_days[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
 void Timer0_init(void)
 {
     T0CON1bits.T0CS=0b010; // Fosc/4
@@ -48,7 +47,7 @@ void increment_seconds(){ //increment time in seconds
     if(test_mode == 0){
     seconds += 1 ; // increment by the second
     }else{
-        seconds += 15;
+        minutes += 15;
     }
     if (seconds == 60){ // if you reach 60 sec
         seconds = 0; // reset seconds to 0
@@ -72,13 +71,12 @@ void increment_seconds(){ //increment time in seconds
             day = 1; // reset the days
             month += 1; // add a month
         }
-    }else{
-        if (day == month_days[month]+1) //else just check for the days
-        {
-            day = 1;
-            month += 1;
-        }
+    }else if(day == month_days[month+1]+1) //else just check for the days
+    {
+        day = 1;
+        month += 1;
     }
+    
     if (month == 12) // when the month reaches 12
     {
         month = 0;

@@ -24266,18 +24266,6 @@ void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 10 "main.c" 2
 
-# 1 "./comparator.h" 1
-
-
-
-
-
-
-
-void DAC_init(void);
-void Comp1_init(void);
-# 11 "main.c" 2
-
 # 1 "./timers.h" 1
 
 
@@ -24286,22 +24274,20 @@ void Comp1_init(void);
 
 
 
-void Timer0_init(unsigned short,unsigned long, unsigned long, unsigned int, unsigned int, unsigned int,unsigned int);
+void Timer0_init(void);
 unsigned int get16bitTMR0val(void);
-unsigned short test_mode;
-
+void increment_seconds(void);
+unsigned int check_for_hour_shift(void);
 unsigned int get_seconds(void);
 unsigned int get_minutes(void);
 unsigned int get_hours(void);
 unsigned int get_day(void);
+const char * get_week_day(void);
 unsigned int get_month(void);
+unsigned int get_year(void);
 
-void increment_seconds(unsigned int);
-void increment_minutes(unsigned int);
-void increment_hours(unsigned int);
-void increment_day(unsigned int);
-void increment_month(unsigned int);
-# 12 "main.c" 2
+int test_mode;
+# 11 "main.c" 2
 
 # 1 "./ADC.h" 1
 
@@ -24313,7 +24299,7 @@ void increment_month(unsigned int);
 
 void ADC_init(void);
 unsigned int ADC_getval(void);
-# 13 "main.c" 2
+# 12 "main.c" 2
 
 # 1 "./LCD.h" 1
 # 17 "./LCD.h"
@@ -24321,46 +24307,47 @@ void LCD_E_TOG(void);
 void LCD_sendnibble(unsigned char number);
 void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_Init(void);
-void LCD_setline (char line);
+void LCD_setline (int line);
 void LCD_sendstring(char *strlst[8]);
 void LCD_scroll(int);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int number);
-# 14 "main.c" 2
-# 26 "main.c"
+void ADC2String(char *buf, unsigned int number, unsigned int x);
+# 13 "main.c" 2
+
+
+
+
+int seconds = 0;
+
 void main(void) {
 
-    LATHbits.LATH3=0;
-    TRISHbits.TRISH3=0;
 
-    TRISDbits.TRISD7=0;
-    LATDbits.LATD7=1;
-
-    TRISAbits.TRISA3=1;
-
-    LATHbits.LATH3 = 1;
-    Comp1_init();
+    Timer0_init();
     Interrupts_init();
-    Timer0_init(1,57,17,06,1,11,2022);
-    LEDarray_init();
-    ADC_init();
     LCD_Init();
+    ADC_init();
 
-    unsigned int curr_day;
-    unsigned int curr_month;
-    char *buf;
-    char *buf1;
-    char *buf2;
-
+    char Sec[2];
+    char Min[2];
+    char Hou[2];
+    char Day[2];
+    char Mon[2];
+    char Yea[4];
+    char ADC[3];
+    char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
     while (1) {
-        unsigned int day = get_day();
-        unsigned int month = get_month();
+        LCD_clear();
+# 49 "main.c"
+        ADC2String(Sec, get_seconds(), 2);
+        ADC2String(Min, get_minutes(), 2);
+        ADC2String(Hou, get_hours(), 2);
+        ADC2String(Day, get_day(), 2);
+        ADC2String(Mon, get_month()+1, 2);
+        ADC2String(Yea, get_year(), 4);
+        ADC2String(ADC, ADC_getval(), 3);
 
-        increment_day(1);
-
-        day += 1;
-        day -= 1;
-        month += 1;
-# 79 "main.c"
+        char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
+        LCD_sendstring(lst);
+        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
 }
