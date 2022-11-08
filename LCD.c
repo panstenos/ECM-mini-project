@@ -109,7 +109,7 @@ void LCD_clear(void)
 /************************************
  * Function to set the cursor to beginning of line 1 or 2
 ************************************/
-void LCD_setline (char line)
+void LCD_setline(char line)
 {
     if(line == 0){
         LCD_sendbyte(0x80,0);   //Set cursor for day of week
@@ -133,16 +133,21 @@ void LCD_setline (char line)
 /************************************
  * Function to send string to LCD screen
 ************************************/
+
 void LCD_sendstring(char *strlst[8]) //input two strings
-{
-        for (int i=0;i<8;i++){ //repeat for every element in the list
-        LCD_setline(i); //write first input in the first line
+{       int i;
+        for (i=0;i<8;i++){ //repeat for every element in the list
+            LCD_setline(i); //write first input in the first line
+            
             while(*strlst[i] !=0){ //write all the characters of each element
                 LCD_sendbyte(*strlst[i]++,1);
-            }
+                }
+        
     }
-}
  
+
+} 
+
 /************************************
  * Function to send string to LCD screen
 ************************************/
@@ -169,43 +174,14 @@ void LCD_scroll(int max) //scrolls back and forth; input maximum length among th
  * the result is stored in buf as ascii text ready for display on LCD
  * Note result is stored in a buffer using pointers, it is not sent to the LCD
 ************************************/
-void ADC2String(char *buf, unsigned int ADC_val,int number){
-    if(number == 1){
-        sprintf(buf, "%d",ADC_val); //convert integer to float
-
-    }else if(number == 2){
-        sprintf(buf, "%02d",ADC_val);
-    }else if(number == 3){
-        sprintf(buf, "%03d",ADC_val);
-    }else{
-        sprintf(buf, "%04d",ADC_val);
+void ADC2String(char *buf, unsigned int x, unsigned int leading_zeros){
+    
+    if(leading_zeros == 0){
+    sprintf(buf, "%u",x); //convert integer to float no leading 0s
+    }else if(leading_zeros == 1){
+    sprintf(buf, "%01u",x); //convert integer to float; leading zero at x < 10
+    }else if(leading_zeros == 2){
+    sprintf(buf, "%02u",x); //convert integer to float; leading zero at x < 100
+    }else{sprintf(buf, "%03u",x); //convert integer to float; leading zero at x < 1000
     }
-            
 }
-
-void display_informations(unsigned int time[],unsigned int adc_val){
-    char *seconds;
-    char *minutes;
-    char *hours;
-    char *day;
-    char *month;
-    char *year;
-    
-    char *adcval;
-    
-    ADC2String(*seconds,time[0],2);
-    ADC2String(*minutes,time[1],2);
-    ADC2String(*hours,time[2],2);
-    ADC2String(*day,time[4],2);
-    ADC2String(*month,time[5],2);
-    ADC2String(*year,time[6],4);
-    
-    ADC2String(*adcval,adc_val,3);
-    
-    
-    
-    LCD_sendstring({time[3],*day,*month,*year,*hours,*minutes,*seconds,*adcval});
-
-    
-}
-
