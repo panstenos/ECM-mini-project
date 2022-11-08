@@ -22,6 +22,6 @@ void LCD_setline (char line);
 void LCD_sendstring(char *strlst[8]);
 void LCD_scroll(int);
 void LCD_clear(void);
-void ADC2String(char *buf, unsigned int,int);
+void ADC2String(char *buf, unsigned int number, unsigned int x);
 
 #endif
