@@ -6,8 +6,16 @@
 #define _XTAL_FREQ 64000000
 
 void Timer0_init(void);
-void get(int *Sec, int *Min, int *Hou, int *Day, int *Week_day, int *Mon, int *Yea);
 unsigned int get16bitTMR0val(void);
 void increment_seconds(void);
 unsigned int check_for_hour_shift(void);
+unsigned int get_seconds(void);
+unsigned int get_minutes(void);
+unsigned int get_hours(void);
+unsigned int get_day(void);
+const char * get_week_day(void);
+unsigned int get_month(void);
+unsigned int get_year(void);
+
+int test_mode;
 #endif
