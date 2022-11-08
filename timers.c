@@ -5,6 +5,7 @@
  * Function to set up timer 0
 ************************************/
 
+int test_mode = 1;
 int seconds = 0; 
 int minutes = 0;
 int hours = 0;
@@ -13,16 +14,24 @@ int week_day = 2;
 int month = 0;
 int year = 2020;
 int month_days[12] = {31,28,31,30,31,31,30,31,30,31,30,31};
+char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
 void Timer0_init(void)
 {
     T0CON1bits.T0CS=0b010; // Fosc/4
     T0CON1bits.T0ASYNC=1; // see datasheet errata - needed to ensure correct operation when Fosc/4 used as clock source
-    T0CON1bits.T0CKPS=0b1000; // 1:256 -> required: 1:244.14
+    if(test_mode == 0){
+        T0CON1bits.T0CKPS=0b1000; // 1:256 -> required: 1:244.14
+        TMR0H=0b00001011;            
+        TMR0L=0b11011011;
+    }else{
+        T0CON1bits.T0CKPS=0; // 1:256 -> required: 1:244.14
+        TMR0H=0b00000000;            
+        TMR0L=0b00000000;
+    }
     T0CON0bits.T016BIT=1;	//8bit mode	
     
     // initialise the time registers to 3035 for the LED to toggle every one second
-    TMR0H=0b00001011;            
-    TMR0L=0b11011011;
+    
     T0CON0bits.T0EN=1;	//start the timer
 }
 
@@ -35,9 +44,12 @@ unsigned int get16bitTMR0val(void)
 	return TMR0L | (TMR0H << 8); //use bitwise operator to combine the H and L bits
 }
 
-void increment_seconds(void){ //increment time in seconds
-    
-    seconds ++ ; // increment by the second
+void increment_seconds(){ //increment time in seconds
+    if(test_mode == 0){
+    seconds += 1 ; // increment by the second
+    }else{
+        seconds += 15;
+    }
     if (seconds == 60){ // if you reach 60 sec
         seconds = 0; // reset seconds to 0
         minutes ++ ; // increse minutes by 1 
@@ -55,9 +67,9 @@ void increment_seconds(void){ //increment time in seconds
         week_day = 0; //reset count to Monday
     }
     if (month == 1 && year%4 == 0){ // check for leap year
-        if (week_day == 30) // check if its after the 29th of February
+        if (day == 30) // check if its after the 29th of February
         {
-            week_day = 1; // reset the days
+            day = 1; // reset the days
             month += 1; // add a month
         }
     }else{
@@ -72,18 +84,44 @@ void increment_seconds(void){ //increment time in seconds
         month = 0;
         year += 1;   
     }
-    
+
 }
 
-void get(int *Sec, int *Min, int *Hou, int *Day, int *Week_day, int *Mon, int *Yea)
-{
-    *Sec = seconds;
-    *Min = minutes;
-    *Hou = hours;
-    *Day = day;
-    *Week_day = week_day;
-    *Mon = month;
-    *Yea = year;
+unsigned int get_seconds(){
+    return seconds;
+}
+unsigned int get_minutes(){
+    return minutes;
+}
+unsigned int get_hours(){
+    return hours;
+}
+unsigned int get_day(){
+    return day;
+}
+const char * get_week_day(){
+    if(week_day == 0){
+        return("MON");
+    }else if(week_day == 1){
+        return("TUE");
+    }else if(week_day == 2){
+        return("WED");
+    }else if(week_day == 3){
+        return("THU");
+    }else if(week_day == 4){
+        return("FRI");
+    }else if(week_day == 5){
+        return("SAT");
+    }else if(week_day == 6){
+        return("SUN");
+    }
+    //return((unsigned char)"MON");
+}
+unsigned int get_month(){
+    return month;
+}
+unsigned int get_year(){
+    return year;
 }
 
 /*
