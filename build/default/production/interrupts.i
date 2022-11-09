@@ -24262,6 +24262,7 @@ unsigned int get_day(void);
 const char * get_week_day(void);
 unsigned int get_month(void);
 unsigned int get_year(void);
+void increment_hours(int);
 
 int test_mode;
 # 3 "interrupts.c" 2

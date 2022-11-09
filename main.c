@@ -48,7 +48,7 @@ void main(void) {
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
         
-        set_light(get_hours(),ADC_getval());
+        set_light(get_hours(),get_day(),get_month(),ADC_getval(),0);
         __delay_ms(100);     
     
     }

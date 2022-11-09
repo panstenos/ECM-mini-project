@@ -43,11 +43,15 @@ unsigned int get16bitTMR0val(void)
 	return TMR0L | (TMR0H << 8); //use bitwise operator to combine the H and L bits
 }
 
+void increment_hours(int value){
+    hours += value;
+}
+
 void increment_seconds(){ //increment time in seconds
     if(test_mode == 0){
     seconds += 1 ; // increment by the second
     }else{
-        minutes += 15;
+        seconds += 15;
     }
     if (seconds == 60){ // if you reach 60 sec
         seconds = 0; // reset seconds to 0

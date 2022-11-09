@@ -2040,8 +2040,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"20 ./timers.h
-[; ;./timers.h: 20: int test_mode;
+"21 ./timers.h
+[; ;./timers.h: 21: int test_mode;
 [v _test_mode `i ~T0 @X0 1 e ]
 "10 interrupts.c
 [; ;interrupts.c: 10: void Interrupts_init(void)

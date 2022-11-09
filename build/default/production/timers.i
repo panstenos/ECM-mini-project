@@ -24250,6 +24250,7 @@ unsigned int get_day(void);
 const char * get_week_day(void);
 unsigned int get_month(void);
 unsigned int get_year(void);
+void increment_hours(int);
 
 int test_mode;
 # 2 "timers.c" 2
@@ -24297,11 +24298,15 @@ unsigned int get16bitTMR0val(void)
  return TMR0L | (TMR0H << 8);
 }
 
+void increment_hours(int value){
+    hours += value;
+}
+
 void increment_seconds(){
     if(test_mode == 0){
     seconds += 1 ;
     }else{
-        minutes += 15;
+        seconds += 15;
     }
     if (seconds == 60){
         seconds = 0;

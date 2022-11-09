@@ -24285,6 +24285,7 @@ unsigned int get_day(void);
 const char * get_week_day(void);
 unsigned int get_month(void);
 unsigned int get_year(void);
+void increment_hours(int);
 
 int test_mode;
 # 11 "main.c" 2
@@ -24315,16 +24316,9 @@ void ADC2String(char *buf, unsigned int number, unsigned int x);
 # 13 "main.c" 2
 
 # 1 "./light_manager.h" 1
-
-
-
-
-
-
-
-
+# 10 "./light_manager.h"
 void Light_init(void);
-void set_light(unsigned int,unsigned int);
+void set_light(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
 # 14 "main.c" 2
 
 
@@ -24363,7 +24357,7 @@ void main(void) {
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
 
-        set_light(get_hours(),ADC_getval());
+        set_light(get_hours(),get_day(),get_month(),ADC_getval(),0);
         _delay((unsigned long)((100)*(64000000/4000.0)));
 
     }
