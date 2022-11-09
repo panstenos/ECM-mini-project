@@ -13,13 +13,10 @@
 #include "LCD.h"
 #include "light_manager.h"
 
-#define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
-#define _LIGHT_OUTPUT LATHbits.LATH3
-int seconds = 0;
+#define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz
 
 void main(void) {
 	//call your initialisation functions to set up the hardware modules
-    //LEDarray_init();  
     Timer0_init();
     Interrupts_init();
     LCD_Init();
@@ -33,22 +30,22 @@ void main(void) {
     char Mon[2];
     char Yea[4];
     char ADC[3];
-    char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
+    //char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
     while (1) {
         LCD_clear();
-        
         ADC2String(Sec, get_seconds(), 2);
         ADC2String(Min, get_minutes(), 2);
         ADC2String(Hou, get_hours(), 2);
         ADC2String(Day, get_day(), 2);
-        ADC2String(Mon, get_month()+1, 2);
+        ADC2String(Mon, get_month()+1, 2); // month goes from 0 to 11
         ADC2String(Yea, get_year(), 4);   
         ADC2String(ADC, ADC_getval(), 3);
         
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
-        
-        set_light(get_hours(),get_day(),get_month(),ADC_getval(),0);
+        //LCD print function
+        set_light(get_hours(),get_day(),get_month(),ADC_getval(),LDR_issue_hours(ADC_getval()));
+        reset_ERROR_OUTPUT(); 
         __delay_ms(100);     
     
     }
