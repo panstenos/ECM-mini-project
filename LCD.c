@@ -166,27 +166,6 @@ void LCD_sendstring(char *strlst[8]) //input two strings
 } 
 
 /************************************
- * Function to send string to LCD screen
-************************************/
-void LCD_scroll(int max) //scrolls back and forth; input maximum length among the two strings
-{
-    max -= 15; //LCD has 16 bits length 
-    if (max > 0){ //only if one of the two lines is more than 16 characters in length
-        int i; //declare the integer
-        for (i=0;i<max;i++){ //scroll right max characters; notice max -= 16
-        LCD_sendbyte(0b00011000,0); //scroll right function
-        //code here to scroll the text on the LCD screen
-        __delay_ms(500); // delay 0.5 sec
-        }
-        for (i=0;i<max;i++){ //scroll back (left) max characters; notice max -= 16
-        LCD_sendbyte(0b00011100,0); //scroll left function
-        //code here to scroll the text on the LCD screen
-        __delay_ms(500); // delay 0.5 sec
-        }
-    }
-}
- 
-/************************************
  * Function takes a ADC value and works out the voltage to 2 dp
  * the result is stored in buf as ascii text ready for display on LCD
  * Note result is stored in a buffer using pointers, it is not sent to the LCD
@@ -196,10 +175,12 @@ void ADC2String(char *buf, unsigned int x, unsigned int leading_zeros){
     if(leading_zeros == 0){
     sprintf(buf, "%u",x); //convert integer to float no leading 0s
     }else if(leading_zeros == 1){
-    sprintf(buf, "%01u",x); //convert integer to float; leading zero at x < 10
+    sprintf(buf, "%01u",x); //convert integer to float; 1 leading zero for x < 10 
     }else if(leading_zeros == 2){
-    sprintf(buf, "%02u",x); //convert integer to float; leading zero at x < 100
-    }else{sprintf(buf, "%03u",x); //convert integer to float; leading zero at x < 1000
+    sprintf(buf, "%02u",x); //convert integer to float; 1 leading zero for x < 100, 2 for x < 10
+    }else if(leading_zeros == 3){
+    sprintf(buf, "%03u",x); //convert integer to float; 1 leading zero for x < 1000, etc.
+    }else{sprintf(buf, "%04u",x); //convert integer to float; 1 leading zeros for x < 1000, etc
     }
 }
 
