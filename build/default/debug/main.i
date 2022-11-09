@@ -24327,6 +24327,8 @@ void main(void) {
     LCD_Init();
     ADC_init();
 
+    TRISHbits.TRISH3 = 0;
+
     char Sec[2];
     char Min[2];
     char Hou[2];
@@ -24337,7 +24339,7 @@ void main(void) {
     char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
     while (1) {
         LCD_clear();
-# 49 "main.c"
+
         ADC2String(Sec, get_seconds(), 2);
         ADC2String(Min, get_minutes(), 2);
         ADC2String(Hou, get_hours(), 2);
@@ -24348,6 +24350,17 @@ void main(void) {
 
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
+
+
+        unsigned int curr_hour = get_hours();
+        if(curr_hour >= 1 && curr_hour < 5){
+            LATHbits.LATH3 = 0;
+        }else{
+            LATHbits.LATH3 = 1;
+        }
         _delay((unsigned long)((100)*(64000000/4000.0)));
+
     }
+
+
 }

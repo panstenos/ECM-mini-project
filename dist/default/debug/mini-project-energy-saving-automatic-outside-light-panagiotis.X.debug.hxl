@@ -11,13 +11,13 @@
  Intel Hex-file ranges:
   0h - 5h		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
   8h - 85h		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
-  E00h - 230Fh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
+  E00h - 234Fh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
   200000h - 20000Fh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
   300000h - 30000Bh		(dist/default/debug\mini-project-energy-saving-automatic-outside-light-panagiotis.X.debug.hex)
  Unused ranges:
   6h - 7h
   86h - DFFh
-  2310h - 1FFFFFh
+  2350h - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -374,6 +374,10 @@
 000022E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000022F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00002300 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00002310 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00002320 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00002330 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
+00002340 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

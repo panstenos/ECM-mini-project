@@ -11,9 +11,10 @@
 #include "timers.h"
 #include "ADC.h"
 #include "LCD.h"
+#include "light_manager.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
-
+#define _LIGHT_OUTPUT LATHbits.LATH3
 int seconds = 0;
 
 void main(void) {
@@ -23,7 +24,8 @@ void main(void) {
     Interrupts_init();
     LCD_Init();
     ADC_init();
-    
+    Light_init();
+        
     char Sec[2];
     char Min[2];
     char Hou[2];
@@ -45,6 +47,11 @@ void main(void) {
         
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
-        __delay_ms(100);
+        
+        set_light(get_hours(),ADC_getval());
+        __delay_ms(100);     
+    
     }
+    
+    
 }

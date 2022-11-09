@@ -4,4 +4,5 @@ LEDarray.h  \
 interrupts.h  \
 timers.h  \
 ADC.h  \
-LCD.h 
+LCD.h  \
+light_manager.h 

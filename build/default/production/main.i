@@ -24314,6 +24314,19 @@ void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number, unsigned int x);
 # 13 "main.c" 2
 
+# 1 "./light_manager.h" 1
+
+
+
+
+
+
+
+
+void Light_init(void);
+void set_light(unsigned int,unsigned int);
+# 14 "main.c" 2
+
 
 
 
@@ -24326,6 +24339,7 @@ void main(void) {
     Interrupts_init();
     LCD_Init();
     ADC_init();
+    Light_init();
 
     char Sec[2];
     char Min[2];
@@ -24337,7 +24351,7 @@ void main(void) {
     char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
     while (1) {
         LCD_clear();
-# 49 "main.c"
+
         ADC2String(Sec, get_seconds(), 2);
         ADC2String(Min, get_minutes(), 2);
         ADC2String(Hou, get_hours(), 2);
@@ -24348,6 +24362,11 @@ void main(void) {
 
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
         LCD_sendstring(lst);
+
+        set_light(get_hours(),ADC_getval());
         _delay((unsigned long)((100)*(64000000/4000.0)));
+
     }
+
+
 }

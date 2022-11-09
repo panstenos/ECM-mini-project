@@ -1,4 +1,4 @@
-# 1 "interrupts.c"
+# 1 "light_manager.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "interrupts.c" 2
+# 1 "light_manager.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24229,21 +24229,9 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 1 "interrupts.c" 2
+# 1 "light_manager.c" 2
 
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 2 "interrupts.c" 2
-
-# 1 "./timers.h" 1
+# 1 "./light_manager.h" 1
 
 
 
@@ -24251,50 +24239,25 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-void Timer0_init(void);
-unsigned int get16bitTMR0val(void);
-void increment_seconds(void);
-unsigned int check_for_hour_shift(void);
-unsigned int get_seconds(void);
-unsigned int get_minutes(void);
-unsigned int get_hours(void);
-unsigned int get_day(void);
-const char * get_week_day(void);
-unsigned int get_month(void);
-unsigned int get_year(void);
 
-int test_mode;
-# 3 "interrupts.c" 2
+void Light_init(void);
+void set_light(unsigned int,unsigned int);
+# 2 "light_manager.c" 2
 
 
-
-
-
-
-
-void Interrupts_init(void)
-{
-    INTCONbits.PEIE = 1;
-    PIE0bits.TMR0IE = 1;
-    PIE2bits.C1IE = 1;
-    INTCONbits.GIE = 1;
+void Light_init(){
+    TRISHbits.TRISH3 = 0;
 }
 
-
-
-
-
-void __attribute__((picinterrupt(("high_priority")))) HighISR()
-{
-    if(PIR0bits.TMR0IF == 1){
-    increment_seconds();
-    if(test_mode == 0){
-            TMR0H=0b00001011;
-            TMR0L=0b11011011;
-    }else{
-            TMR0H=0;
-            TMR0L=0;
+void set_light(unsigned int curr_hour, unsigned int luminosity){
+    if(curr_hour >= 1 && curr_hour < 5){
+        LATHbits.LATH3 = 0;
+        return;
     }
-        PIR0bits.TMR0IF = 0;
- }
+    if(luminosity < 10){
+        LATHbits.LATH3 = 1;
+    }else{
+        LATHbits.LATH3 = 0;
+    }
+
 }

@@ -25,6 +25,8 @@
       <itemPath>ADC.h</itemPath>
       <itemPath>LCD.c</itemPath>
       <itemPath>LCD.h</itemPath>
+      <itemPath>light_manager.c</itemPath>
+      <itemPath>light_manager.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
