@@ -9,6 +9,7 @@ int test_mode = 1;
 int seconds = 0; 
 int minutes = 0;
 int hours = 0;
+unsigned int LDR_hours = 0;
 int day = 1;
 int week_day = 2;
 int month = 0;
@@ -47,11 +48,11 @@ void increment_hours(int value){
     hours += value;
 }
 
-void increment_seconds(){ //increment time in seconds
+void increment_seconds(){ //main counter function
     if(test_mode == 0){
     seconds += 1 ; // increment by the second
     }else{
-        seconds += 15;
+        seconds += 30;
     }
     if (seconds == 60){ // if you reach 60 sec
         seconds = 0; // reset seconds to 0
@@ -60,6 +61,10 @@ void increment_seconds(){ //increment time in seconds
     if (minutes == 60){ 
         minutes = 0; //reset minutes to 0
         hours ++ ; // increase hours by 1
+        if (LDR_hours <= 23) // increment only when LDR_hours are less than 23
+        {
+            LDR_hours ++ ; // increase the hour count for the LDR
+        }
     }
     if (hours == 24){
         hours = 0; //reset hours to 0
@@ -75,20 +80,21 @@ void increment_seconds(){ //increment time in seconds
             day = 1; // reset the days
             month += 1; // add a month
         }
-    }else if(day == month_days[month+1]+1) //else just check for the days
+    }else if(day == month_days[month+1]+1) //if the day is one more than the number of days of each month:
     {
-        day = 1;
-        month += 1;
+        day = 1; // set days to 1
+        month += 1; // increment the month
     }
     
     if (month == 12) // when the month reaches 12
     {
-        month = 0;
-        year += 1;   
+        month = 0; // reset the months
+        year += 1; // increment the years
     }
 
 }
 
+// functions that return the values to main.c
 unsigned int get_seconds(){
     return seconds;
 }
@@ -117,7 +123,6 @@ const char * get_week_day(){
     }else if(week_day == 6){
         return("SUN");
     }
-    //return((unsigned char)"MON");
 }
 unsigned int get_month(){
     return month;
@@ -126,16 +131,17 @@ unsigned int get_year(){
     return year;
 }
 
-/*
-unsigned int check_for_hour_shift(void){
-    if(day_of_the_week != 7){
-        return 0;
-    }
-    if(month == 3 && day + 7 <= 31){
-        return 1;
-    }
-    if(month == 10 && day + 7 <= 31){
-        return -1;
-    }
+unsigned int LDR_issue_hours(int LDR_val)
+{
+// if the LDR can read values higher than 10 then reset the hour count to 0
+        if(LDR_val > 10){
+            LDR_hours = 0;
+        }
+        
+        if(LDR_hours >= 24){ // if the LDR hour counter is higher than 24 
+            return 1; // error state
+        }else{
+            return 0; // non error state
+        }
+
 }
-*/
