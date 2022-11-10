@@ -5,15 +5,16 @@
  * Function to set up timer 0
 ************************************/
 
-int test_mode = 1;
-int seconds = 0; 
-int minutes = 0;
-int hours = 0;
-unsigned int LDR_hours = 0;
-int day = 1;
-int week_day = 2;
-int month = 0;
-int year = 2020;
+int test_mode = 1; //1
+int seconds = 0; //0
+int minutes = 0; //0
+int hours = 0; //0
+int extra_hours = 0; //0
+unsigned int LDR_hours = 0; //0
+int day = 26; //1
+int week_day = 3; //2
+int month = 2; //0
+int year = 2020; //202
 int month_days[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
 void Timer0_init(void)
 {
@@ -43,11 +44,11 @@ unsigned int get16bitTMR0val(void)
 {
 	return TMR0L | (TMR0H << 8); //use bitwise operator to combine the H and L bits
 }
-
+/*
 void increment_hours(int value){
     hours += value;
 }
-
+*/
 void increment_seconds(){ //main counter function
     if(test_mode == 0){
     seconds += 1 ; // increment by the second
@@ -66,8 +67,8 @@ void increment_seconds(){ //main counter function
             LDR_hours ++ ; // increase the hour count for the LDR
         }
     }
-    if (hours == 24){
-        hours = 0; //reset hours to 0
+    if (hours + extra_hours == 24){
+        hours = 0 - extra_hours; //reset hours to 0 - extra_hours
         day ++ ; // increase day count by 1
         week_day ++; // increase day of week by 1
     }
@@ -91,7 +92,14 @@ void increment_seconds(){ //main counter function
         month = 0; // reset the months
         year += 1; // increment the years
     }
-
+    if (month == 2 && day > 24 && week_day == 6 && hours == 2 && extra_hours == 0)
+    { // If its March AND its the last week AND the time is 02:00 and extra_hours is 0 (to do it only once)
+        extra_hours = 1; // set the extra hours counter to 1
+    }
+    if (month == 9 && day > 24 && week_day == 6 && hours == 2 && extra_hours == 1)
+    { // If its October AND its the last week AND the time is 02:00 and extra_hours is 1 (to do it only once)
+        extra_hours = 0; // set the extra hours counter to 0
+    }   
 }
 
 // functions that return the values to main.c
@@ -102,7 +110,7 @@ unsigned int get_minutes(){
     return minutes;
 }
 unsigned int get_hours(){
-    return hours;
+    return hours + extra_hours;
 }
 unsigned int get_day(){
     return day;
