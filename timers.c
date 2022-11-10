@@ -11,7 +11,7 @@ int minutes = 0; //0
 int hours = 0; //0
 int extra_hours = 0; //0
 int adjust_hours = 0; //0
-// when 1, it adjusts the hours at 5:00 January 1st 
+// when 1, it adjusts the hours at 6:00 January 1st 
 //to accont for timer error stacked at the end of the year
 int adjust_hours_once = 0; 
 unsigned int LDR_hours = 0; //0
