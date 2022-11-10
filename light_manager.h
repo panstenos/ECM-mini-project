@@ -1,4 +1,3 @@
-
 #ifndef LIGHT_MANAGER_H
 #define	LIGHT_MANAGER_H
 
@@ -9,6 +8,5 @@
 
 void Light_init(void);
 void set_light(unsigned int,unsigned int,unsigned int,unsigned int,unsigned int);
-
-#endif	/* LIGHT_MANAGER_H */
-
+void reset_ERROR_OUTPUT(void);
+#endif
