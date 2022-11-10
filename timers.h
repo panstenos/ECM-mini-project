@@ -17,6 +17,6 @@ const char * get_week_day(void);
 unsigned int get_month(void);
 unsigned int get_year(void);
 unsigned int LDR_issue_hours(int);
-//void increment_hours(int);
+void adjust_time(int);
 int test_mode;
 #endif
