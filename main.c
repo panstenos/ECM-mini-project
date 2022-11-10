@@ -30,9 +30,12 @@ void main(void) {
     char Mon[2];
     char Yea[4];
     char ADC[3];
-    //char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
+    char day_of_the_week[] = {"MON","TUE","WED","THU","FRI","SAT","SUN"};
+    
     while (1) {
         LCD_clear();
+        adjust_time(ADC_getval()); // call the function to adjust the time
+        // convert to string and add the specified leading zeros
         ADC2String(Sec, get_seconds(), 2);
         ADC2String(Min, get_minutes(), 2);
         ADC2String(Hou, get_hours(), 2);
@@ -40,13 +43,15 @@ void main(void) {
         ADC2String(Mon, get_month()+1, 2); // month goes from 0 to 11
         ADC2String(Yea, get_year(), 4);   
         ADC2String(ADC, ADC_getval(), 3);
-        
+        // create a list with the new characters
         char *lst[8] = {get_week_day(),Day,Mon,Yea,Hou,Min,Sec,ADC};
-        LCD_sendstring(lst);
-        //LCD print function
+        LCD_sendstring(lst); //LCD print function
+        
+        // call the function that turns on and off the light 
         set_light(get_hours(),get_day(),get_month(),ADC_getval(),LDR_issue_hours(ADC_getval()));
+        // button RF2 press to reset error state led RD7 function
         reset_ERROR_OUTPUT(); 
-        __delay_ms(100);     
+        __delay_ms(100); // delay function
     
     }
     
