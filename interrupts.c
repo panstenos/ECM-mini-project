@@ -22,7 +22,8 @@ void Interrupts_init(void)
 void __interrupt(high_priority) HighISR()
 {   
     if(PIR0bits.TMR0IF == 1){//check the interrupt flag
-    increment_seconds();        // set the timer to reset at 3035 every time the it overflows
+    increment_seconds(); //call the function to increment the seconds
+    // set the timer to reset at 3035 every time the it overflows
     if(test_mode == 0){
             TMR0H=0b00001011;            
             TMR0L=0b11011011;
