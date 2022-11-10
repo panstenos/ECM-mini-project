@@ -20,7 +20,6 @@ void LCD_sendbyte(unsigned char Byte, char type);
 void LCD_Init(void);
 void LCD_setline (int line);	
 void LCD_sendstring(char *strlst[8]);
-void LCD_scroll(int);
 void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number, unsigned int x);
 #endif
