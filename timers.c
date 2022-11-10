@@ -10,12 +10,19 @@ int seconds = 0; //0
 int minutes = 0; //0
 int hours = 0; //0
 int extra_hours = 0; //0
+int adjust_hours = 0; //0
+// when 1, it adjusts the hours at 5:00 January 1st 
+//to accont for timer error stacked at the end of the year
+int adjust_hours_once = 0; 
 unsigned int LDR_hours = 0; //0
-int day = 26; //1
-int week_day = 3; //2
-int month = 2; //0
-int year = 2020; //202
+
+int day = 26; //1 //26
+int week_day = 3; //2 //3
+int month = 2; //0 //2
+int year = 2020; //2020
 int month_days[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+int sunrise_records[31] = {0}; // list that contains the sunrise times of December
+int sunset_records[31] = {0}; // list that contains the sunset times of December
 void Timer0_init(void)
 {
     T0CON1bits.T0CS=0b010; // Fosc/4
@@ -152,4 +159,30 @@ unsigned int LDR_issue_hours(int LDR_val)
             return 0; // non error state
         }
 
+}
+
+void adjust_time(int LDR_val){
+    if (LDR_val>10 && month ==11) // if its day in December
+    {
+        if (sunrise_records[day] == 0) // if its the first time you update the list
+        {
+            sunrise_records[day] == hours; // keep only the lowest value
+        }
+        sunset_records[day] == hours; // keep the highest value
+    }
+    if (month == 0 && day == 1 && hours == 0 && minutes == 0 & seconds == 0) // calculations for adjust_hour made at midnight
+    {
+        int j;
+        for (j=0; j<31;j++) // add all the measurements from December
+        {
+            adjust_hours += sunrise_records[j] + sunset_records[j] - 24; 
+        }
+        adjust_hours /= 62; // calculate the average adjustment needed once!
+        adjust_hours_once = 1; // turn flag on
+    }
+    if (month == 0 && day == 1 && hours == 6 && minutes == 0 & seconds == 0 && adjust_hours_once == 1) // employ the changes at 6 am 
+    {
+        hours -= adjust_hours; //adjust the value of the current hours
+        adjust_hours_once = 0; // turn flag off
+    }
 }
